@@ -1,0 +1,147 @@
+<html>
+<head>
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/admin_css.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/side.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/all.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/all.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/fontawesome.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/fontawesome.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/solid.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/solid.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/regular.css')}}">
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+</head>
+<style>
+
+.med{
+  margin-left:15%;
+  margin-top: 8%;
+  /* text-transform: uppercase; */
+  font-family: 'Roboto';
+  font-weight: lighter;
+align-items: center;
+text-align: center;
+font-size: 40px;
+font: 'Roboto';
+vertical-align :middle;
+text-align: center;
+}
+
+#hand{
+    width:40px;
+  }
+
+  p{
+  font-family: 'Roboto';
+  font-weight: 4px;
+  opacity: 4px;
+  font-size: 20px;
+  color:rgb(133, 131, 131);
+}
+    .dropbtn {
+  background-color: #241d61;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  text-align : center;
+  margin-top: -5px;
+  margin-right: 55px;
+  float: right;
+  /* Edit Margin top, right to move the position of the button*/
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.center{
+  margin-left: 21%;
+  margin-top:10px;
+  
+}
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #a57373;}
+
+/* .header{
+  box-shadow: 1px 0 6px #746663;
+} */
+h1{
+  text-transform: uppercase;
+}
+</style>
+    <body>
+        
+            <div class="header">
+                <a href="/blue" class="logo"><img id="img" alt="Anurag" src="../static/images/AUlogo.png" ></a>
+                <!--<div class="header-right">
+                  <a class="active" href="#home">Home</a>
+                  <a href="#contact">Contact</a>
+                  <a href="#about">About</a>
+                </div>-->
+                <div class="righty">
+                    <div class="dropdown" >
+                        <button class="right_buttons">{{name}}</button></a>
+                        <div class="dropdown-content">
+                          <a href="/logout">Logout</a>
+                        </div>
+                      </div>
+              </div>
+        </div>
+    <div class="sidebar">
+        <ul >
+            <!-- <li><a href ="#">
+                <span class="i" >Dashboard</span>
+            </a>
+        </li> -->
+        <!-- <li><a href="/add_user"><span class="i"><i class="fa fa-solid fa-user-plus"></i>&emsp;Student</span></a></li> -->
+            <li><a href ="/add_user"><span class="i"><i class="fa fa-solid fa-user-plus"></i>&emsp;Add Users</span></a></li>
+            <li><a href ="/upload_data"><span class="i" ><i class="fa fa-solid fa-upload"></i>&emsp;Upload Data</span></a></li>
+            <li><a href ="/count_users"><span class="i" ><i class="fa fa-solid fa-users"></i>&emsp;Users</span></a></li>
+            
+            <!--<li><a href ="#"><span class="i" >Logout</span></a></li>-->
+            <!-- added this two(ranking n logout) to check whether scroll is working or not -->
+            <!--<li><a href ="#"><span class="i" >Rankings</span></a></li>
+            <li><a href ="#"><span class="i" >Logout</span></a></li>-->
+        </ul>      
+    </div>
+    <div class="container">
+      <div class="med">
+
+        <img id="hand" src="/static/images/hand-wave.jpg"></img>
+        Welcome {{name}} !
+        <br> 
+        <!-- <p>Get started by exploring the visualizations.</p>  -->
+      </div>
+    </div>
+    
+</body>
+</html>

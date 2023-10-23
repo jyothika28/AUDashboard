@@ -1,0 +1,127 @@
+body{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  /* background-color: rgb(214, 197, 232); */
+  background: url('b3.jpg');
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+#example2{
+ box-sizing: border-box;
+  width: 370px;
+  height: 250px;
+  padding: 30px;  
+  border: 7px solid black;
+}
+
+.user{
+  position: relative;
+  display: inline-flex;
+  width: 180px;
+  height: 55px;
+  margin: 0 35px;
+  margin-right:11%;
+  perspective: 1000px;
+  margin-top : 4%;
+}
+.user a{
+  font-size: 19px;
+  letter-spacing: 1px;
+  transform-style: preserve-3d;
+  transform: translateZ(-25px);
+  transition: transform .25s;
+  font-family: 'Montserrat', sans-serif;
+  
+}
+.user a:before,
+.user a:after{
+  position: absolute;
+  content: "LOGIN AS USER >>";
+  height: 60px;
+  width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.user a:before{
+  color: #fff;
+  background: #000;
+  transform: rotateY(0deg) translateZ(25px);
+}
+.user a:after{
+  color: #000;
+  transform: rotateX(90deg) translateZ(25px);
+}
+.user a:hover{
+  transform: translateZ(-25px) rotateX(-90deg);
+}
+
+.bg-img{
+  background: url('b3.jpg');
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+.bg-img:after{
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(113, 103, 114, 0.7);
+}
+
+.admin{
+  position: relative;
+  display: inline-flex;
+  /* paddings-top: 35%; */
+  width: 180px;
+  height: 55px;
+  margin: 0 75px;
+  margin-top : 12%;
+  margin-left:12%;
+  perspective: 1000px;
+}
+.admin a{
+  font-size: 19px;
+  letter-spacing: 1px;
+  transform-style: preserve-3d;
+  transform: translateZ(-25px);
+  transition: transform .25s;
+  font-family: 'Montserrat', sans-serif;
+  
+}
+.admin a:before,
+.admin a:after{
+  position: absolute;
+  content: "LOGIN AS ADMIN >>";
+  height: 60px;
+  width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.admin a:before{
+  color: #fff;
+  background: #000;
+  transform: rotateY(0deg) translateZ(25px);
+}
+.admin a:after{
+  color: #000;
+  transform: rotateX(90deg) translateZ(25px);
+}
+.admin a:hover{
+  transform: translateZ(-25px) rotateX(-90deg);
+}

@@ -1,0 +1,202 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/admin_css.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/adduser.css')}}"> 
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/side.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/all.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/fontawesome.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/fontawesome.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/solid.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/solid.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/regular.css')}}">
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  </head>
+  <style>
+      .dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  .create{
+    font-size: 14px;
+  }
+  /* The container <div> - needed to position the dropdown content */
+    .dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    text-align : center;
+    margin-top: -5px;
+    margin-right: 55px;
+    float: right;
+    /* Edit Margin top, right to move the position of the button*/
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  button.right-buttons{
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+  
+  .center{
+    margin-left: 21%;
+    margin-top:10px;
+    
+  }
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  
+  .show{
+    position: absolute;
+    right: 30%;
+    top:79%;
+    font-size: 13px;
+    font-weight: 700;
+    color: #222;
+    display: none;
+    cursor: pointer;
+    font-family: 'Roboto';
+  }
+  
+  .pass-key:valid ~ .show{
+    display: block;
+  }
+  .he2{
+    margin-left: 23%;
+    margin-top:2%;
+    
+  }
+  h4{
+    font-family: 'Roboto';
+  }
+  @media screen and (width:1920px){
+.he2{
+  margin-left: 23%;
+  margin-top:2%;
+  font-size:30px;
+}
+.container{
+  height: 500px;
+  width: 600px;
+  font-size: 18.5px;
+}
+.create{
+    font-size: 19px;
+  }
+  input{
+    font-size: 15px;
+  }
+  }
+  </style>
+      <body>
+          
+              <div class="header">
+                  <a href="/blue" class="logo"><img id="img" alt="Anurag" src="../static/images/AUlogo.png" ></a>
+                  <div class="righty">
+                      <div class="dropdown" >
+                          <button class="right_buttons">{{name}}</button></a>
+                          <div class="dropdown-content">
+                            <a href="/logout">Logout</a>
+                          </div>
+                        </div>
+                </div>
+          </div>
+      <div class="sidebar">
+          <ul >
+            <li><a class="d" href ="/add_user"><span class="i"><i class="fa fa-solid fa-user-plus"></i>&emsp;Add Users</span></a></li>
+            <li><a href ="/upload_data"><span class="i" ><i class="fa fa-solid fa-upload"></i>&emsp;Upload Data</span></a></li>
+            <li><a href ="/count_users"><span class="i" ><i class="fa fa-solid fa-users"></i>&emsp;Users</span></a></li>
+            
+          </ul>      
+      </div>
+      <h2 class="he2">Add Users</h2>
+      <form action="/insert_user" method="POST">
+        <div class="container">
+        <label for="email"><h4>Name</h4></label>
+        <input type="text" placeholder="Enter Name" id="namy" name="user_name" required>
+        <label for="email"><h4>Designation</h4></label>
+        <input type="text" placeholder="Enter Designation" id="desigy" name="user_desig" required>
+          <label for="email"><h4>Email</h4></label>
+          <input type="text" placeholder="Enter Email" pattern=".+@cvsr\.ac\.in" id="emaily" name="user_email" required>
+          <label for="psw"><h4>Password</h4></label>
+          <input type="password" class="pass-key" name="user_pass" id="passy" required placeholder="Enter Password" required>
+         
+        
+            <span class="show">SHOW</span> 
+            <div class="create">
+            <!--<input type="submit" value="create" a href="/insert_user"></a>-->
+            <button type="submit" class="create" name="create_user " id="add" a href="/insert_user">ADD</button>
+             </div>
+              <script>
+              const pass_field = document.querySelector('.pass-key');
+              const showBtn = document.querySelector('.show');
+              showBtn.addEventListener('click', function(){
+               if(pass_field.type === "password"){
+                 pass_field.type = "text";
+                 showBtn.textContent = "HIDE";
+                 showBtn.style.color = "#3498db";
+               }else{
+                 pass_field.type = "password";
+                 showBtn.textContent = "SHOW";
+                 showBtn.style.color = "#222";
+               }
+              });
+              const create_status=document.querySelector('.create');
+              const name_st=document.getElementById('namy').value;
+              const desig_st=document.getElementById('desigy').value;
+              var pat='.+@cvsr\.ac\.in';
+              
+              const pass_st=document.getElementById('passy').value;
+              function checking(){
+              if(document.getElementById('emaily').value.match(pat) && name_st!==null && desig_st!==null && pass_st!==null)
+              {
+              
+                swal(
+                  {icon:'success',
+                  text:"User Inserted successfully"});
+              }
+              else{
+                swal({icon:'error',
+                text:"Assigned format should be followed!"});
+              }}
+              create_status.addEventListener('click', checking);
+           </script> 
+    
+          </div>
+      </form>
+      </body>
+      </html>

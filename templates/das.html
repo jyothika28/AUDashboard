@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/user_css.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/side.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/all.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/all.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/fontawesome.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/fontawesome.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/solid.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/solid.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/regular.css')}}">
+      <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+      <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    </head>
+
+<style>
+
+    .dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.d{
+  font-family:"Roboto";
+   background-color: #dacfcfb0;
+   font-size: 19px;
+   font-weight: bold;
+   /* padding-left: 20px; */
+}
+
+
+    .header{
+  position: -webkit-sticky;
+  position: sticky;
+  top:0;
+  background-color: #fff;
+  /* bottom: 1px; */
+  z-index: 999;
+  /* box-shadow: 0px 1px 0px 1px rgba(219, 214, 214, 0.43); */
+  /* box-shadow:rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
+  /* box-shadow: outset 0 0 .5em .5em rgb(218, 209, 209); */
+}
+.med{
+  margin-left:15%;
+  margin-top: 8%;
+  /* text-transform: uppercase; */
+  font-family: 'Roboto';
+  font-weight: lighter;
+align-items: center;
+text-align: center;
+font-size: 40px;
+font: 'Roboto';
+vertical-align :middle;
+text-align: center;
+}
+/* The container <div> - needed to position the dropdown content */
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+   position: absolute; 
+  text-align : center;
+  margin-top: -50px;
+  right: 60px;
+  float: right;
+  /* Edit Margin top, right to move the position of the button*/
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: relative;
+  background-color: #f1f1f1;
+  min-width: 160px;
+   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+
+.dropdown-content:hover {background-color: #ddd;} 
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;} 
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.container{
+    width: 78%;
+    margin-top: 40%;
+    overflow: hidden;
+    margin-left:280px;
+    background-color:white;
+    margin-top: 15px;
+    /* margin-right: -10%; */
+}
+
+.container ul{
+    padding: 0px;
+    margin: 0px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background-color: white;
+    width: 96%;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+.container ul li{
+    overflow-y: hidden;
+    overflow-x: hidden;
+    list-style: none;
+    float:left;
+    width:22%;
+    height:130px;
+    background: #fff;
+    margin :20px 20px 20px 55px; 
+    box-sizing: border-box;
+    border-radius: 13px;
+    align-items: center;
+}
+.container ul li:first-child{
+    background:#050b41;
+    align-items: center;
+    text-align: left;
+}
+.container ul li:nth-child(2){
+    background-color: #91002b;
+}
+.container ul li:nth-child(3){
+    background-color:#BFB051;
+}
+
+.container ul li:nth-child(4){
+    background-color: #9E7777;
+}
+
+.container ul li:nth-child(5){
+    background-color:#a4bb64;
+}
+
+.container ul li:nth-child(6){
+    background-color: #6aa8eb;
+}
+.container ul li:nth-child(7){
+    background-color: #663248;
+}
+.container ul li:nth-child(8){
+    background-color: #399194;
+}
+
+.container ul li:nth-child(9){
+    background-color: #D57E7E;
+}
+
+ .bottom{
+    width: 100%;
+    height:100%;
+    font-family: "Roboto", sans-serif;;
+    font-size: 23px;
+    text-align: 21px;
+    color:white;
+   
+ }
+ .container ul li i{
+     overflow: hidden;
+     margin-top:9px;
+    padding-left:38px;
+
+ }
+ .bottom_r{
+    width: 100%;
+    height:100%;
+    font-family: "Roboto", sans-serif;;
+    font-size: 23px;
+    padding-left: 10px;
+    color:white;
+    margin-top: -7px;
+ }
+
+
+@media screen and (width:1920px){
+  body{
+    overflow-x: hidden;
+  }
+  .container{
+    width: 78%;
+    margin-top: 40%;
+    overflow: hidden;
+    margin-left:450px;
+    background-color:white;
+    margin-top: 55px;
+    /* margin-right: -10%; */
+}
+
+.container ul{
+    padding: 0px;
+    margin: 0px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background-color: white;
+    width: 96%;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+.container ul li{
+    overflow-y: hidden;
+    overflow-x: hidden;
+    list-style: none;
+    float:left;
+    width:22%;
+    height:160px;
+    background: #fff;
+    margin :20px 20px 20px 55px; 
+    box-sizing: border-box;
+    border-radius: 13px;
+    align-items: center;
+}
+.bottom{
+    width: 100%;
+    height:100%;
+    font-family: "Roboto", sans-serif;;
+    font-size: 25px;
+    text-align: 21px;
+    color:white;
+    margin-top: -10%;
+    margin-left: 9%
+ }
+
+ .bottom_r{
+    width: 100%;
+    height:100%;
+    font-family: "Roboto", sans-serif;;
+    font-size: 25px;
+    padding-left: 10px;
+    color:white;
+    margin-top: -10%;
+ }
+
+ .container i{
+   margin-left: 9%;
+ }
+ .d{
+  font-family:"Roboto";
+   background-color: #dacfcfb0;
+   font-size: 26px;
+   font-weight: bold;
+   /* padding-left: 20px; */
+}
+  }
+</style>
+</head>
+
+<body>
+        
+    <div class="header">
+        <a href="/red" class="logo"><img id="img" alt="Anurag" src="../static/images/AUlogo.png" ></a>
+        <!--<div class="header-right">
+          <a class="active" href="#home">Home</a>
+          <a href="#contact">Contact</a>
+          <a href="#about">About</a>
+      </div>-->
+      <div class="righty">
+      <!--<a href="#"><button class="right_buttons">About</button></a>-->
+      <div class="dropdown" >
+          <button class="right_buttons">{{name}}</button></a>
+          <div class="dropdown-content">
+            <a href="/logout">
+              Logout</a>
+          </div>
+        </div>
+    </div>
+</div>
+<div class="sidebar">
+  <ul>
+    <li><a class="d" href="/das"><span class="i"><i class="fa fa-bars"></i>&emsp;DASHBOARD</span></a></li>
+    <li><a href ="/programs"><span class="i"><i class="fa fa-tasks"></i>&emsp;Programs</span></a></li>
+      <li><a href ="/admissions"><span class="i" ><i class="fa fa fa-university"></i>&emsp;Admissions</span></a></li>
+    <li><a href="/student"><span class="i"><i class="fa fa-solid fa-user-graduate"></i>&emsp;Students</span></a></li>
+  <li><a href ="/faculty"><span class="i" ><i class="fa fa-solid fa-chalkboard-teacher"></i>&emsp;Faculty</span></a></li>
+  <li><a href ="/exams"><span class="i"><i class="fa fa-solid fa-question"></i>&emsp;Exams</span></a></li>
+   <li><a href ="/research"><span class="i" ><i class="fas fa-solid fa-rupee-sign"></i>&emsp;Research Grants</span></a></li>
+   
+  
+</div>
+
+
+<script>
+$('.feat-btn').click(function(){
+$('div ul .feat-show').toggleClass("show");
+$('div ul .first').toggleClass("rotate");
+});
+
+$('div ul li').click(function(){
+$(this).addClass("active").siblings().removeClass("active");
+});
+</script>
+
+<div class="container">
+  <ul>
+    <li> <a href="/programs"><i class="fa fa-tasks fa-3x" style="color:white"> </i>
+      <div class="bottom">&emsp; Programs</div> </a></li>
+      <li> <a href="/admissions"><i class="fa fa fa-university fa-3x" style="color:white"> </i>
+        <div class="bottom"> &nbsp;&nbsp;&nbsp;Admissions</div> </a></li>
+      <li><a href="/student"> <i class="fa fa-solid fa-user-graduate fa-3x" style="color:white"></i>
+            <div class="bottom">&nbsp;&nbsp;&nbsp;&nbsp;Students</div> </a></li>
+      <li> <a href="/faculty"><i class="fa fa-solid fa-chalkboard-teacher fa-3x" style="color:white"></i>
+              <div class="bottom"> &nbsp;&nbsp;&emsp;Faculty</div></a></li>
+      <li><a href =""><i class="fa fa-solid fa-book fa-3x" style="color:white"></i>
+          <div class="bottom">&emsp;&nbsp;&nbsp;Exams</div> </a> </li>
+    <li ><a href ="/research"><i class="fas fa-solid fa-rupee-sign fa-3x" style="color:white"></i>
+            <div class="bottom_r">Research Grants</div> </a> </li>
+  </ul>
+</div>
+</html>

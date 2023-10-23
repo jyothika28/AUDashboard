@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/user_css.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/side.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/all.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/all.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/fontawesome.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/fontawesome.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/solid.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/solid.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/regular.css')}}">
+      <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+      <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    </head>
+
+<style>
+  
+#hand{
+    width:40px;
+  }
+
+  p{
+  font-family: 'Roboto';
+  font-weight: 4px;
+  opacity: 4px;
+  font-size: 20px;
+  color:rgb(133, 131, 131);
+}
+    .dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+.header{
+  position: -webkit-sticky;
+  position: sticky;
+  top:0;
+  background-color: #fff;
+  bottom: 1px;
+  z-index: -1;
+  /* box-shadow: 0px 1px 0px 1px rgba(219, 214, 214, 0.43); */
+  box-shadow:rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  /* box-shadow: outset 0 0 .5em .5em rgb(218, 209, 209); */
+}
+.med{
+  margin-left:15%;
+  margin-top: 8%;
+  /* text-transform: uppercase; */
+  font-family: 'Roboto';
+  font-weight: lighter;
+align-items: center;
+text-align: center;
+font-size: 40px;
+font: 'Roboto';
+vertical-align :middle;
+text-align: center;
+}
+
+.header{
+  position: -webkit-sticky;
+  position: sticky;
+  top:0;
+  background-color: #fff;
+  /* bottom: 1px; */
+  z-index: 999;
+  /* box-shadow: 0px 1px 0px 1px rgba(219, 214, 214, 0.43); */
+  /* box-shadow:rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
+  /* box-shadow: outset 0 0 .5em .5em rgb(218, 209, 209); */
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  text-align : center;
+  margin-top: -5px;
+  margin-right: 55px;
+  float: right;
+  /* Edit Margin top, right to move the position of the button*/
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.righty{
+  margin-top:18px;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.d{
+  font-family:"Roboto";
+   background-color: #dacfcfb0;
+   font-size: 19px;
+   font-weight: bold;
+   /* padding-left: 20px; */
+}
+@media screen and (width:1920px){
+.d{
+  font-family:"Roboto";
+   background-color: #dacfcfb0;
+   font-size: 26px;
+   font-weight: bold;
+   /* padding-left: 20px; */
+}}
+</style>
+    <body>
+        
+            <div class="header">
+                <a href="/red" class="logo"><img id="img" alt="Anurag" src="../static/images/AUlogo.png" ></a>
+                <!--<div class="header-right">
+                  <a class="active" href="#home">Home</a>
+                  <a href="#contact">Contact</a>
+                  <a href="#about">About</a>
+              </div>-->
+              <div class="righty">
+              <!--<a href="#"><button class="right_buttons">About</button></a>-->
+              <div class="dropdown" >
+                  <button class="right_buttons">{{name}}</button></a>
+                  <div class="dropdown-content">
+                    <a href="/logout">
+                      Logout</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+          <ul>
+            <li><a class="d" href="/das"><span class="i"><i class="fa fa-bars"></i>&emsp;DASHBOARD</span></a></li>
+            <li><a href ="/programs"><span class="i"><i class="fa fa-tasks"></i>&emsp;Programs</span></a></li>
+              <li><a href ="/admissions"><span class="i" ><i class="fa fa fa-university"></i>&emsp;Admissions</span></a></li>
+            <li><a href="/student"><span class="i"><i class="fa fa-solid fa-user-graduate"></i>&emsp;Students</span></a></li>
+          <li><a href ="/faculty"><span class="i" ><i class="fa fa-solid fa-chalkboard-teacher"></i>&emsp;Faculty</span></a></li>
+          <!-- <li><a href ="/exams"><span class="i"><i class="fa fa-solid fa-question"></i>&emsp;Exams</span></a></li> -->
+          <li><a href ="/research"><span class="i" ><i class="fas fa-solid fa-rupee-sign"></i>&emsp;Research Grants</span></a></li>
+           
+            <!-- <li>
+              <a href="#" class="feat-btn"><span class="i" ><i class="fa fa-solid fa-book"></i>&emsp;Publications
+                <nav class="fas fa-caret-down first"></nav>
+              </a>
+              <ul class="feat-show">
+                <li><a href="/it_viz">IT</a></li>
+                <li><a href="/cse_viz">CSE</a></li>
+                <li><a href="/ece_viz">ECE</a></li>
+                <li><a href="/eee_viz">EEE</a></li>
+                <li><a href="/mech_viz">MECH</a></li>
+                <li><a href="/chem_viz">CHEM</a></li>
+
+              </ul>
+            </li>
+            <li><a href ="/consultancy_viz"><span class="i"><i class="fa fa-solid fa-handshake"></i>&emsp;Consultancy</span></a></li>
+              <li><a href ="/support"><span class="i" ><i class="fa fa-solid fa-users"></i>&emsp;Support Staff</span></a></li>
+              <li><a href ="#"><span class ="i"><i class="fa fa-duotone fa-award fa-lg"></i>&emsp;Accreditations</span></a></li>
+              <li><a href ="#"><span class="i" ><i class="fa fa-solid fa-poll"></i>&emsp;Rankings</span></a></li>
+              <li><a href ="#"><span class="i" ><i class="fa fa-solid fa-trophy fa-1px" ></i>&emsp;Results</span></a></li>
+          </ul>     -->
+    </div>
+    
+
+    <script>
+      $('.feat-btn').click(function(){
+        $('div ul .feat-show').toggleClass("show");
+        $('div ul .first').toggleClass("rotate");
+      });
+
+      $('div ul li').click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+      });
+    </script>
+
+    <div class="container">
+      <div class="med">
+
+        <img id="hand" src="/static/images/hand-wave.jpg"></img>
+        Welcome {{name}} !
+        <br> 
+        <p>Get started by exploring the visualizations.</p> 
+      </div>
+    </div>
+
+
+</body>
+</html>

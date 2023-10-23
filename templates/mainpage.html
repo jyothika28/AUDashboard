@@ -1,0 +1,491 @@
+
+
+
+
+<!DOCTYPE html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/fontawesome.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/fontawesome.min.css')}}">
+  
+
+</head>
+<link rel="stylesheet" href="{{ url_for ('static',filename='css/studentlog.css')}}">
+<link rel="stylesheet" href="{{ url_for ('static',filename='css/css/fontawesome.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/fontawesome.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/fontawesome.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/fontawesome.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/solid.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/solid.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/regular.css')}}">
+  
+<style>
+  #img{
+    width:170px;
+    height:42px;
+   padding:20px;
+   
+}
+  .css-typing p {
+    border-right: .15em solid orange;
+    font-family: "Times New Roman";
+    font-size: 20px;
+    font-weight : bold;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .css-typing p:nth-child(1) {
+    width: 18em;
+    -webkit-animation: type 3s steps(20, end);
+    animation: type 2s steps(20, end);
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+  }
+  .css-typing p:nth-child(2) {
+    width: 17em;
+    opacity: 0;
+    -webkit-animation: type2 3s steps(20, end), blink .5s step-end infinite alternate;
+    animation: type2 2s steps(20, end), blink .5s step-end infinite alternate;
+    -webkit-animation-delay: 4s;
+    animation-delay: 2s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes type {
+    0% {
+      width: 0;
+    }
+    99.9% {
+      border-right: .15em solid orange;
+    }
+    100% {
+      border: none;
+    }
+  }
+  
+  @-webkit-keyframes type {
+    0% {
+      width: 0;
+    }
+    99.9% {
+      border-right: .15em solid orange;
+    }
+    100% {
+      border: none;
+    }
+  }
+  
+  @keyframes type2 {
+    0% {
+      width: 0;
+    }
+    1% {
+      opacity: 1;
+    }
+    99.9% {
+      border-right: .15em solid orange;
+    }
+    100% {
+      opacity: 1;
+      border: none;
+    }
+  }
+  
+  @-webkit-keyframes type2 {
+    0% {
+      width: 0;
+    }
+    1% {
+      opacity: 1;
+    }
+    99.9% {
+      border-right: .15em solid orange;
+    }
+    100% {
+      opacity: 1;
+      border: none;
+    }
+  }
+  
+  @keyframes type3 {
+    0% {
+      width: 0;
+    }
+    1% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-webkit-keyframes type3 {
+    0% {
+      width: 0;
+    }
+    1% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+  @-webkit-keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+
+  span.i {
+font-family: Arial, Helvetica, sans-serif;
+font-weight: bold;
+font-size: 110%;
+z-index: -1;
+color: rgb(20, 37, 49);
+}
+
+  .righty{
+    float: right;
+    margin:1%;
+    padding:5px;
+}
+.right_buttons{
+    padding: 0px 30px;
+    font-weight:bold;
+    color:black;
+    background-color: white;
+    border-radius: 5px;
+}
+.btn {
+  background-color: var(--background-color);
+  color: #222;
+  padding: .5em 1em;
+  border: none;
+  outline: none;
+  position: relative;
+  cursor: pointer;
+
+  --background-color: #E3E3E3;
+  --border-size: 2px;
+  --accent-color: #0AF;
+}
+
+.btn.right_buttons::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--border-size);
+  background-color: var(--accent-color);
+  transition: transform 300ms ease-in-out;
+
+  transform: scaleX(0);
+}
+
+.btn.right_buttons:hover::before,
+.btn.right_buttons:focus::before {
+  transform: scaleX(1);
+}
+
+.tooltip {
+  position: relative;
+   display: inline-block;
+  /*border-bottom: 1px dotted black; */
+}
+
+.tooltip .tooltiptext {
+  border: 5px solid #FF00FF;
+  visibility: hidden;
+  width: 500px;
+  height: 300px;
+  background-color:rgba(236, 222, 209, 0.877);
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  text-align: center;
+  border-radius: 10px;
+  padding:75px 20px;
+  word-spacing: 5px;
+  word-wrap: normal;
+  border: #222;
+  border-color: black;
+  /* Position the tooltip */
+  /* position: absolute; */
+  z-index: 1000;
+  position:fixed;
+top: 15%;
+left: 33%;
+  margin-left: -60px;
+}
+
+
+
+.tooltip .show {
+  border: 15px solid #918c8c;
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+
+.tooltiptext .close{ 
+  position: absolute;
+   top: 20px; 
+   right: 30px; 
+   transition: all 200ms;
+  font-size: 30px; 
+  font-weight: bold; 
+  text-decoration: none; 
+  color: #333;
+  filter: "";
+ }
+.tooltiptext .close:hover {
+font-weight: bolder;
+font-size: 40px;
+}
+
+
+
+.tooltip1 {
+  position: relative;
+   display: inline-block;
+  /*border-bottom: 1px dotted black; */
+}
+
+.tooltip1 .tooltiptext1 {
+  border: 5px solid #FF00FF;
+  visibility: hidden;
+  width: 500px;
+  height: 300px;
+  background-color:rgba(236, 222, 209, 0.877);
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  text-align: center;
+  border-radius: 10px;
+  padding:75px 20px;
+  word-spacing: 5px;
+  word-wrap: normal;
+  border: #222;
+  border-color: black;
+  /* Position the tooltip */
+  /* position: absolute; */
+  z-index: 1000;
+  position:fixed;
+top: 15%;
+left: 33%;
+  margin-left: -60px;
+}
+
+
+
+.tooltip1 .show {
+  border: 15px solid #918c8c;
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+
+.tooltiptext1 .close{ 
+  position: absolute;
+   top: 20px; 
+   right: 30px; 
+   transition: all 200ms;
+  font-size: 30px; 
+  font-weight: bold; 
+  text-decoration: none; 
+  color: #333;
+  filter: "";
+ }
+.tooltiptext1 .close:hover {
+font-weight: bolder;
+font-size: 40px;
+}
+
+
+
+.popup .content     { 
+  max-height: 30%; 
+  overflow: auto;
+  word-spacing: 5%;
+  color: black;
+ }
+
+
+
+h2{
+  color:rgba(3,27,68,255);
+}
+p{
+  color: rgb(104, 24, 24);
+}
+@media screen and (width:1920px){
+  h2{
+    font-size: 42px;
+  }
+  .css-typing p{
+    font-size: 30px;
+  }
+  .btn {
+  background-color: var(--background-color);
+  color: #222;
+  padding: .9em 1em;
+  border: none;
+  outline: none;
+  position: relative;
+  cursor: pointer;
+
+  --background-color: #E3E3E3;
+  --border-size: 2px;
+  --accent-color: #0AF;
+}
+.bg{
+    background-color: #04AA6D;
+    /* filter: blur(2.5px);
+    -webkit-filter: blur(2.5px); */
+    margin-top: 5%;
+    height: 70%;    
+   /* Edit the height in order to get the full image */
+    width: 70%;
+    margin-left: 10%;
+    /* Center and scale the image nicely */
+    background-position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .right {
+  right: -2%;
+  /* margin-top: -20vh; */
+  margin-top: 1%;
+
+}
+}
+
+
+</style>
+
+
+  <div class="header">
+    <img id="img" alt="Anurag" src="../static/images/AUlogo.png" ></a>
+  <div class="righty">
+    <div class="tooltip">
+      <button class="btn right_buttons" onclick="myFun()">About</button>
+      <span class="tooltiptext" id="myPopup">
+        <a class="close" onclick="myclose()" href="">×</a>
+        <div class="content">
+          <h2>AU Dashboard</h2>
+          A dashboard is a visual display of all of your data. While it can be used in all kinds of different ways, its primary intention is to provide information at-a-glance.
+          AU Dashboard is a type of graphical user interface which often provides at-a-glance views of key performance indicators relevant to a particular objective or business process. In other usage, "dashboard" is another name for "progress report" or "report" and considered a form of data visualization.
+              </div>
+            </span>
+      </div>
+
+      <script>
+        // When the user clicks on div, open the popup
+        function myFun() {
+          var popup = document.getElementById("myPopup");
+          popup.classList.toggle("show");
+            $('.centered').css("filter","blur(6px)");
+            $('.bg').css("filter","blur(6px)");
+        }
+        function myclose() {
+          
+            $('.centered').css("filter","blur()");
+            $('.bg').css("filter","blur()");
+        }
+      
+      </script>
+
+<div class="tooltip1">
+      <button class="btn right_buttons" onclick="myFun1()">Contact Us</button></a>
+      <span class="tooltiptext1" id="myPopup1">
+        <a class="close" onclick="myclose()" href="">×</a>
+        <div class="content1">
+          <!-- <h2>Contact us</h2> -->
+          <h2>How can we help you ?</h2>
+         <span class="i"> <i class='fa fa-solid fa-phone'></i>&emsp;</span>
+         +91038103456
+         <br><br><br>
+         <span class="i"> <i class='fa fa-solid fa-envelope'></i>&emsp;</span>
+         shj@cvsr.ac.in
+         <br><br><br>
+         <span class="i"> <i class='fa fa-solid fa-map-marker'></i>&emsp;</span>
+         Venkatapur, Ghatkesar Rd,
+          Hyderabad, Telangana 500088
+              </div>
+            </span>
+      </div>
+<script>
+      function myFun1(){
+        var popup = document.getElementById("myPopup1");
+        popup.classList.toggle("show");
+          $('.centered').css("filter","blur(6px)");
+          $('.bg').css("filter","blur(6px)");
+      }
+      function myclose() {
+          
+          $('.centered').css("filter","blur()");
+          $('.bg').css("filter","blur()");
+      }
+    </script>
+
+  </div>
+</div>
+
+<div class="rem">
+  <div class="split left">
+    <div class="centered">
+      <h2> WELCOME TO</h2>
+      <!-- <h2 style="text-align:center;">TO</h2> -->
+      <h2>AU DASHBOARD</h2>
+
+<div class="css-typing">
+  <p>
+  Numbers have an important story to tell.
+  </p>
+  <p>
+  Login to explore the visualizations!
+  </p>
+</div>
+
+
+     <br>
+        <a href="/user" class="button" style="vertical-align:middle"><span>LOGIN </span></a>
+        <!-- <br><br>
+        <a href="/admin" class="button" style="vertical-align:middle"><span>ADMIN LOGIN </span></a> -->
+
+    </div>  
+  </div>
+</div>
+  
+
+<div class="split right">
+  <image class="bg" src="../static/images/dashhome.png"></image>
+</div>
+
+</html>

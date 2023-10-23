@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/fontawesome.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/fontawesome.min.css')}}">
+  
+  <meta charset="utf-8">
+  <title>Admin Login</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<link rel="stylesheet" href="{{ url_for ('static',filename='css/studentlog.css')}}">
+<link rel="stylesheet" href="{{ url_for ('static',filename='css/css/fontawesome.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/css/fontawesome.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/fontawesome.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/fontawesome.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/solid.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/solid.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='css/regular.css')}}">
+  
+<style>
+   @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Poppins:400,500&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 25px;
+  user-select: none;
+  /* overflow-y: hidden; */
+}
+/* .bg-img{
+  /* background: url('b1.jpg'); */
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+} */
+.bg-img:after{
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(113, 103, 114, 0.7);
+}
+.content{
+margin-top: 10%;
+  position: relative;
+  top: 50%;
+  left: 10%;
+  z-index: 999;
+  text-align: center;
+  padding: 60px 32px;
+  width: 370px;
+  background: rgba(114, 68, 68, 0.171);
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 2.4px 3.2px;
+  /* box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.75); */
+  /* box-shadow:rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
+
+}
+.content header{
+  color: rgb(48, 46, 46);
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 35px 0;
+  font-family: 'Montserrat',sans-serif;
+}
+.field{
+  position: relative;
+  height: 45px;
+  width: 100%;
+  display: flex;
+  background: rgba(255,255,255,0.94);
+}
+.field span{
+  color: #222;
+  width: 40px;
+  line-height: 45px;
+}
+.field input{
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #222;
+  font-size: 16px;
+  font-family: 'Poppins',sans-serif;
+}
+.space{
+  margin-top: 16px;
+}
+.show{
+  position: absolute;
+  right: 13px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #222;
+  display: none;
+  cursor: pointer;
+  font-family: 'Montserrat',sans-serif;
+}
+.pass-key:valid ~ .show{
+  display: block;
+}
+.pass{
+  text-align: left;
+  margin: 10px 0;
+}
+.pass a{
+  color: white;
+  text-decoration: none;
+  font-family: 'Poppins',sans-serif;
+}
+.pass:hover a{
+  text-decoration: underline;
+}
+.field input[type="submit"]{
+  background: #3498db;
+  border: 1px solid #2691d9;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Montserrat',sans-serif;
+}
+.field input[type="submit"]:hover{
+  background: #2691d9;
+}
+.login{
+  color: white;
+  margin: 20px 0;
+  font-family: 'Poppins',sans-serif;
+}
+
+i span{
+  margin-left: 8px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 16px;
+  font-family: 'Poppins',sans-serif;
+}
+.signup{
+  font-size: 15px;
+  color: white;
+  font-family: 'Poppins',sans-serif;
+}
+.signup a{
+  color: #3498db;
+  text-decoration: none;
+}
+.signup a:hover{
+  text-decoration: underline;
+}
+
+  #img{
+    width:170px;
+    height:80px;
+   padding:20px;
+}
+  
+  span.i {
+font-family: Arial, Helvetica, sans-serif;
+font-weight: bold;
+font-size: 110%;
+z-index: -1;
+color: rgb(20, 37, 49);
+}
+
+  .righty{
+    float: right;
+    margin:1%;
+    padding:5px;
+}
+.right_buttons{
+    padding: 0px 30px;
+    font-weight:bold;
+    color:black;
+    background-color: white;
+    border-radius: 5px;
+}
+.btn {
+  background-color: var(--background-color);
+  color: #222;
+  padding: .5em 1em;
+  border: none;
+  outline: none;
+  position: relative;
+  cursor: pointer;
+
+  --background-color: #E3E3E3;
+  --border-size: 2px;
+  --accent-color: #0AF;
+}
+
+.btn.right_buttons::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--border-size);
+  background-color: var(--accent-color);
+  transition: transform 300ms ease-in-out;
+
+  transform: scaleX(0);
+}
+
+.btn.right_buttons:hover::before,
+.btn.right_buttons:focus::before {
+  transform: scaleX(1);
+}
+
+.tooltip {
+  position: relative;
+   display: inline-block;
+  /*border-bottom: 1px dotted black; */
+}
+
+.tooltip .tooltiptext {
+  border: 5px solid #FF00FF;
+  visibility: hidden;
+  width: 500px;
+  height: 300px;
+  background-color:rgba(236, 222, 209, 0.877);
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  text-align: center;
+  border-radius: 10px;
+  padding:75px 20px;
+  word-spacing: 5px;
+  word-wrap: normal;
+  border: #222;
+  border-color: black;
+  /* Position the tooltip */
+  /* position: absolute; */
+  z-index: 1000;
+  position:fixed;
+top: 15%;
+left: 33%;
+  margin-left: -60px;
+}
+
+
+
+.tooltip .show {
+  border: 15px solid #918c8c;
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+
+.tooltiptext .close{ 
+  position: absolute;
+   top: 20px; 
+   right: 30px; 
+   transition: all 200ms;
+  font-size: 30px; 
+  font-weight: bold; 
+  text-decoration: none; 
+  color: #333;
+  filter: "";
+ }
+.tooltiptext .close:hover {
+font-weight: bolder;
+font-size: 40px;
+}
+
+
+
+.tooltip1 {
+  position: relative;
+   display: inline-block;
+  /*border-bottom: 1px dotted black; */
+}
+
+.tooltip1 .tooltiptext1 {
+  border: 5px solid #FF00FF;
+  visibility: hidden;
+  width: 500px;
+  height: 300px;
+  background-color:rgba(236, 222, 209, 0.877);
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  text-align: center;
+  border-radius: 10px;
+  padding:75px 20px;
+  word-spacing: 5px;
+  word-wrap: normal;
+  border: #222;
+  border-color: black;
+  /* Position the tooltip */
+  /* position: absolute; */
+  z-index: 1000;
+  position:fixed;
+top: 15%;
+left: 33%;
+  margin-left: -60px;
+}
+
+
+
+.tooltip1 .show {
+  border: 15px solid #918c8c;
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+
+.tooltiptext1 .close{ 
+  position: absolute;
+   top: 20px; 
+   right: 30px; 
+   transition: all 200ms;
+  font-size: 30px; 
+  font-weight: bold; 
+  text-decoration: none; 
+  color: #333;
+  filter: "";
+ }
+.tooltiptext1 .close:hover {
+font-weight: bolder;
+font-size: 40px;
+}
+
+
+
+.popup .content     { 
+  max-height: 30%; 
+  overflow: auto;
+  word-spacing: 5%;
+  color: black;
+ }
+
+
+
+h2{
+  color:rgba(3,27,68,255);
+  margin-left: 40%;
+  margin-top: -5%;
+}
+p{
+  color: rgb(104, 24, 24);
+}
+
+</style>
+
+
+  <div class="header">
+    <img id="img" alt="Anurag" src="../static/images/AUlogo.png" ></a>
+    <h2>AU DASHBOARD</h2>
+</div>
+
+<div class="rem">
+  <div class="split left">
+    <div class="centered">
+     
+      <form method="POST" action="/admin_dashy">
+    
+                <div class="bg-img">
+                   <div class="content">
+                      <header>Admin Login</header>
+                      <form action="#">
+                         <div class="field">
+                            <span class="fa fa-user"></span>
+                            <input type="text" name="email" required placeholder="Enter Email" required>
+                         </div>
+                         <div class="field space">
+                            <span class="fa fa-lock"></span>
+                            <input type="password" class="pass-key" name="password" required placeholder="Enter Password" required>
+                            <span class="show">SHOW</span>
+                         </div>
+                         <br>
+                         <div class="field">
+                          <input type="submit" value="LOGIN" a href="/admin_dashy"></a>
+                         </div>
+                      </form>
+                </div>
+                
+             
+            
+        </div>
+        
+        <script>
+          const pass_field = document.querySelector('.pass-key');
+          const showBtn = document.querySelector('.show');
+          showBtn.addEventListener('click', function(){
+           if(pass_field.type === "password"){
+             pass_field.type = "text";
+             showBtn.textContent = "HIDE";
+             showBtn.style.color = "#3498db";
+           }else{
+             pass_field.type = "password";
+             showBtn.textContent = "SHOW";
+             showBtn.style.color = "#222";
+           }
+          });
+       </script>
+</div>
+
+</form>
+    </div>  
+  </div>
+</div>
+  
+
+<div class="split right">
+  <image class="bg" src="../static/images/dashhome.png"></image>
+</div>
+
+</html>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <html>
+   <head>
+      <meta charset="utf-8">
+      <title>Admin Login </title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   </head>
+   <style>
+       @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Poppins:400,500&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 25px;
+  user-select: none;
+}
+.bg-img{
+  background: url('b1.jpg');
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+.bg-img:after{
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(113, 103, 114, 0.7);
+}
+.content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+  text-align: center;
+  padding: 60px 32px;
+  width: 370px;
+  transform: translate(-50%,-50%);
+  background: rgba(255, 251, 251, 0.171);
+  box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+}
+.content header{
+  color: rgb(48, 46, 46);
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 35px 0;
+  font-family: 'Montserrat',sans-serif;
+}
+.field{
+  position: relative;
+  height: 45px;
+  width: 100%;
+  display: flex;
+  background: rgba(255,255,255,0.94);
+}
+.field span{
+  color: #222;
+  width: 40px;
+  line-height: 45px;
+}
+.field input{
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #222;
+  font-size: 16px;
+  font-family: 'Poppins',sans-serif;
+}
+.space{
+  margin-top: 16px;
+}
+.show{
+  position: absolute;
+  right: 13px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #222;
+  display: none;
+  cursor: pointer;
+  font-family: 'Montserrat',sans-serif;
+}
+.pass-key:valid ~ .show{
+  display: block;
+}
+.pass{
+  text-align: left;
+  margin: 10px 0;
+}
+.pass a{
+  color: white;
+  text-decoration: none;
+  font-family: 'Poppins',sans-serif;
+}
+.pass:hover a{
+  text-decoration: underline;
+}
+.field input[type="submit"]{
+  background: #3498db;
+  border: 1px solid #2691d9;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Montserrat',sans-serif;
+}
+.field input[type="submit"]:hover{
+  background: #2691d9;
+}
+.login{
+  color: white;
+  margin: 20px 0;
+  font-family: 'Poppins',sans-serif;
+}
+
+i span{
+  margin-left: 8px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 16px;
+  font-family: 'Poppins',sans-serif;
+}
+.signup{
+  font-size: 15px;
+  color: white;
+  font-family: 'Poppins',sans-serif;
+}
+.signup a{
+  color: #3498db;
+  text-decoration: none;
+}
+.signup a:hover{
+  text-decoration: underline;
+}
+   </style>
+ <body class="bg">
+<form method="POST" action="/admin_dashy">
+    
+        <div class="bg-img">
+           <div class="content">
+              <header>Admin Login</header>
+              <form action="#">
+                 <div class="field">
+                    <span class="fa fa-user"></span>
+                    <input type="text" name="email" required placeholder="Enter Email" required>
+                 </div>
+                 <div class="field space">
+                    <span class="fa fa-lock"></span>
+                    <input type="password" class="pass-key" name="password" required placeholder="Enter Password" required>
+                    <span class="show">SHOW</span>
+                 </div>
+                 <br>
+                 <div class="field">
+                  <input type="submit" value="LOGIN" a href="/admin_dashy"></a>
+                 </div>
+              </form>
+        </div>
+        <script>
+           const pass_field = document.querySelector('.pass-key');
+           const showBtn = document.querySelector('.show');
+           showBtn.addEventListener('click', function(){
+            if(pass_field.type === "password"){
+              pass_field.type = "text";
+              showBtn.textContent = "HIDE";
+              showBtn.style.color = "#3498db";
+            }else{
+              pass_field.type = "password";
+              showBtn.textContent = "SHOW";
+              showBtn.style.color = "#222";
+            }
+           });
+        </script>
+     
+    
+
+</div>
+</form>
+</body>
+</html> -->

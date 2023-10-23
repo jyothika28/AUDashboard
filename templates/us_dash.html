@@ -1,0 +1,223 @@
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/user_css.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/side.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/all.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/all.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/fontawesome.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/fontawesome.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/solid.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/solid.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/regular.css')}}">
+  </head>
+
+<style>
+    .dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  text-align : center;
+  margin-top: -5px;
+  margin-right: 55px;
+  float: right;
+  /* Edit Margin top, right to move the position of the button*/
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+#barChart{
+
+    width:450px !important;
+    height:300px !important;
+  
+  }
+</style>
+    <body>
+        
+            <div class="header">
+                <a href="https://anurag.edu.in/" class="logo"><img id="img" alt="Anurag" src="../static/images/AUlogo.png" ></a>
+                <!--<div class="header-right">
+                  <a class="active" href="#home">Home</a>
+                  <a href="#contact">Contact</a>
+                  <a href="#about">About</a>
+              </div>-->
+              <div class="righty">
+              <!--<a href="#"><button class="right_buttons">About</button></a>-->
+              <div class="dropdown" >
+                  <button class="right_buttons">User</button></a>
+                  <div class="dropdown-content">
+                    <a href="home" Session.Clear();>
+                      Logout</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+    <div class="sidebar">
+        <ul >
+          <li><a href ="/us_dash"><span class="i" ><i class="fas fa-solid fa-bars"></i>&emsp;Dashboard</span></a></li>
+          <li><a href ="/student"><span class="i"><i class="fa fa-solid fa-user-graduate"></i>&emsp;Student</span></a></li>
+          <li><a href ="/faculty"><span class="i" ><i class="fa fa-solid fa-chalkboard-teacher"></i>&emsp;Faculty</span></a></li>
+          <li><a href ="/research"><span class="i" ><i class="fas fa-solid fa-rupee-sign"></i>&emsp;Research Grants</span></a></li>
+          <li><a href ="#"><span class="i" ><i class="fa fa-solid fa-book"></i>&emsp;Publications</span></a></li>
+          <li><a href ="#"><span class="i" ><i class="fa fa-solid fa-handshake"></i>&emsp;Consultancy</span></a></li>
+          <li><a href ="#"><span class="i" ><i class="fa fa-solid fa-users"></i>&emsp;Support Staff</span></a></li>
+          <li><a href ="#"><span class ="i"><i class="fa fa-duotone fa-award fa-lg"></i>&emsp;Accreditations</span></a></li>
+          <li><a href ="#"><span class="i" ><i class="fa fa-solid fa-poll"></i>&emsp;Rankings</span></a></li>
+          <li><a href ="#"><span class="i" ><i class="fa fa-solid fa-trophy fa-1px" ></i>&emsp;Results</span></a></li>
+          </ul>      
+    </div>
+    <div class="center">
+        <table>
+            <caption>Table</caption>
+            <tr>
+              <td></td>
+              <th scope="col">2018</th>
+              <th scope="col">2019</th>
+              <th scope="col">2020</th>
+              <th scope="col">2021</th>
+              <th scope="col">2022</th>
+            </tr>
+            <tr>
+              <th scope="row">UG</th>
+              <td>{{stu_course[0][2]}}</td>
+              <td>{{stu_course[1][2]}}</td>
+              <td>{{stu_course[2][2]}}</td>
+              <td>{{stu_course[3][2]}}</td>
+              <td>{{stu_course[4][2]}}</td>
+            </tr>
+            <tr>
+              <th scope="row">PG</th>
+              <td>{{stu_course[0][0]}}</td>
+              <td>{{stu_course[1][0]}}</td>
+              <td>{{stu_course[2][0]}}</td>
+              <td>{{stu_course[3][0]}}</td>
+              <td>{{stu_course[4][0]}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Ph.D</th>
+              <td>{{stu_course[0][1]}}</td>
+              <td>{{stu_course[1][1]}}</td>
+              <td>{{stu_course[2][1]}}</td>
+              <td>{{stu_course[3][1]}}</td>
+              <td>{{stu_course[4][1]}}</td>
+            </tr>
+            
+          </table>
+          <div>
+            <canvas id="pieChart" style="max-height:250px;max-width:350px"></canvas>
+          <canvas id="barChart" ></canvas>
+          </div>
+
+
+
+    </div>
+<script>
+    var b = document.getElementById('barChart').getContext('2d');
+    var p=document.getElementById('pieChart').getContext('2d');
+    var xValues = {{re_names | safe}};
+    var yValues = {{re_values | safe}};
+    var pie_x={{ f_names | safe }};
+    var pie_y={{f_values | safe}}
+    var barColors = [
+          "#b91d47",
+          "#00aba9",
+          "#2b5797",
+          "#1abd46",
+                "#9cbd1a",
+                "#4e1abd",
+                "#bd1a71",
+                "#5e0a14",
+                "#8c797b",
+                "#828c79",
+                "#eced91",
+                "#edce91"
+        ];
+    //bar chart    
+    var myChart = new Chart(b, {
+        type: 'bar',
+        data: {
+            labels: xValues,
+            datasets: [{
+                label: 'Research Grants',
+                data: yValues,
+                backgroundColor: [
+                "#b91d47",
+                "#00aba9",
+                "#2b5797"
+                ],
+                backgroundColor: barColors,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                }
+            },
+            legend: {display: false},
+            title: {
+              display: true,
+              text: "Research Grants"
+            }
+        }
+    });
+
+
+    //piechart    
+    var piechart=new Chart("pieChart", {
+        type: "pie",
+        data: {
+          labels: pie_x,
+          datasets: [{
+            backgroundColor: barColors,
+            data: pie_y
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          title: {
+            display: true,
+            text: "Faculty Courses"
+          }
+        }
+      });
+</script>
+
+
+</body>
+</html>

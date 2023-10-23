@@ -1,0 +1,60 @@
+<html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Source: -->
+
+
+<form method="POST">
+    <div class="d1">
+    <label for="yos">Select Program:</label>
+    <select placeholder="xyz" name="selected_pr" id="ys">
+      
+      {% for y in pr_drop %}
+  <option  value= "{{y}}" SELECTED>{{y}}</option>"
+  {% endfor %}
+  <option value="" selected disabled>Program</option>
+    </select>
+    </div>
+    
+  
+    <div class="d2">
+    <label for="dept" id="#second">Select Department:</label>
+    <select name="selected_dept" id="d">
+      {% for d in d_drop %}
+  <option  value= "{{d}}" SELECTED>{{d}}</option>"
+  {% endfor %}
+  <option value="" selected disabled>Department</option>
+    </select>
+    </div>
+  
+  
+
+<select id="source" name="source">
+     <option>MANUAL</option>
+     <option>ONLINE</option>
+</select>
+
+<!-- Status: -->
+<select id="status" name="status">
+    <option>hi</option>
+    <option>hi2</option>
+</select>
+
+<script>
+    $(document).ready(function() {
+  
+  $("#source").change(function() {
+    
+    var el = $(this) ;
+    
+    if(el.val() === "ONLINE" ) {
+    $("#status").append("   <option>SHIPPED</option>");
+    $("#status").append("   <option>s2</option>");
+    }
+      else if(el.val() === "MANUAL" ) {
+        $("#status option:last-child").remove() ; }
+  });
+  
+});
+</script>
+</html>

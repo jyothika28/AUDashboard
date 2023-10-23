@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/user_css.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/side.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/all.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/all.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/fontawesome.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/fontawesome.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/solid.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/solid.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/regular.css')}}">
+      <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+  </head>
+
+<style>
+  .center .home-content .overview-boxes .box{
+    background-color: #f6f7ef80;
+    opacity:1;
+  }
+.current{
+  color: rgb(255, 255, 255)!important;
+background: #5a5858!important;
+border-left-color: white;
+}
+
+button.print-button {
+  width: 60px;
+  height: 65px;
+  /* margin-top: -60vh; */
+  /* margin-left: 180vh; */
+  float: right;
+  /* margin-right: -20%; */
+  margin-top: 2%;
+
+}
+span.print-icon, span.print-icon::before, span.print-icon::after, button.print-button:hover .print-icon::after {
+  border: solid 3px rgb(75, 73, 73);
+}
+span.print-icon::after {
+  border-width: 2px;
+}
+
+button.print-button {
+  position: relative;
+  padding: 0;
+  border: 0;
+  
+  border: none;
+  background: transparent;
+}
+
+span.print-icon, span.print-icon::before, span.print-icon::after, button.print-button:hover .print-icon::after {
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+span.print-icon {
+  position: relative;
+  display: inline-block;  
+  padding: 0;
+  margin-top: 20%;
+
+  width: 60%;
+  height: 30%;
+  background: #fff;
+  border-radius: 20% 20% 0 0;
+}
+
+span.print-icon::before {
+  content: " ";
+  position: absolute;
+  bottom: 100%;
+  left: 20%;
+  right: 12%;
+  height: 110%;
+
+  transition: height .2s .15s;
+}
+
+span.print-icon::after {
+  content: " ";
+  position: absolute;
+  top: 55%;
+  left: 12%;
+  right: 12%;
+  height: 0%;
+  background: #fff;
+  background-repeat: no-repeat;
+  background-size: 70% 90%;
+  background-position: center;
+  background-image: linear-gradient(
+    to top,
+    #fff 0, #fff 14%,
+        rgb(81, 139, 206) 14%, rgb(81, 139, 206) 28%,
+        #fff 28%, #fff 42%,
+        rgb(81, 139, 206) 42%, rgb(81, 139, 206) 56%,
+        #fff 56%, #fff 70%,
+        rgb(81, 139, 206) 70%, rgb(81, 139, 206) 84%,
+        #fff 84%, #fff 100%
+  );
+
+  transition: height .2s, border-width 0s .2s, width 0s .2s;
+}
+
+button.print-button:hover {
+  cursor: pointer;
+}
+
+button.print-button:hover .print-icon::before {
+  height:0px;
+  transition: height .2s;
+}
+button.print-button:hover .print-icon::after {
+  height:120%;
+  transition: height .2s .15s, border-width 0s .16s;
+}
+
+.grid-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  background: rgb(255, 255, 255);
+  padding: 15px 14px;
+  border-radius: 12px;
+  box-shadow: 2px 7px 12px rgba(0,0,0,0.1);
+}
+    .dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+.header{
+  position: -webkit-sticky;
+  position: sticky;
+  top:0;
+  background-color: #fff;
+  bottom: 1px;
+  
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  text-align : center;
+  margin-top: -5px;
+  margin-right: 55px;
+  float: right;
+  /* Edit Margin top, right to move the position of the button*/
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.center{
+    margin-left:5%;
+
+}
+*{}
+.header{
+  opacity: 10;
+  z-index: 999;
+  position: -webkit-sticky;
+  position: sticky;
+  top:0;
+  background-color:white;
+  bottom: 1px;
+}
+#barChart{
+margin-top: 35px;
+  width:450px !important;
+  height:300px !important;
+  margin-left: 0;
+}
+
+#pieChart{
+  max-height:300px;
+  max-width:370px;
+  margin-top: -32%; 
+  height: 200px;
+  margin-left: 55%;
+}
+
+
+#doughChart{
+margin-left: 3%;
+margin-top: 3%;
+}
+
+#lineGraph{
+  position: absolute;
+  max-height:280px;
+  max-width:400px;
+  /* margin-top: 5%; */
+  /* margin-top: -22%; */
+  margin-left: 36%;
+  height: 200px;
+  margin-top: -22.5%;
+}
+#mulbarGraph{
+
+  width:850px !important;
+  height:300px !important;
+  margin-left: 0;
+}
+.center{
+  margin-left: 25%;
+}
+@media print {
+
+div.sidebar{
+display:none;
+}
+
+div.overview-boxes .box{
+display: none;
+}
+div.header{
+display:none;
+}
+
+div.gauge1{
+display: none;
+}
+div.gauge2{
+display: none;
+}
+div.gauge3{
+display: none;
+}
+}
+
+
+h4{
+  float: right;
+  margin-top: 7.5%;
+  margin-right: -4.5%;
+  color: grey;
+  font-weight: 20px;
+}
+.righty{
+  margin-top:18px;
+}
+
+#horizBarChart{
+max-height:570px;
+max-width:850px;
+margin-top: 40px;
+}
+
+select{
+  height: 25px;
+  border:1.5px solid black;
+  border-radius: 5px;
+  color: #373837;
+}
+
+input{
+  color: #08812d;
+  font-size: 16px;
+  font-weight: bold;
+  height: 25px;
+  width: 80px;
+  margin-left: 40%;
+  margin-top: -1.99%;
+  position: absolute;
+  border-radius: 4px;
+}
+     
+label{
+  /* background:#FFCCCC; */
+    /* margin:10px 0 0 0; */
+    display:inline-block;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+#ys{
+  margin-right: 25%;
+  margin-left: 0.5%;
+}
+
+#d{
+  margin-left: 0.5%;
+}
+
+.yos{
+  margin-top: 10%;
+}
+#second{
+  margin-right: 10%;
+}
+
+.home-content .overview-boxes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    margin-bottom: 26px;
+  }
+  .overview-boxes .box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(130% / 4 - 15px);
+    height: 100px;
+    background: rgba(21, 123, 182, 0.1);
+    padding: 15px 14px;
+    border-radius: 12px;
+    box-shadow: 2px 5px 10px rgba(0,0,0,0.1);
+    margin-top: 5%;
+  }
+  .overview-boxes .box-topic{
+    font-size: 20px;
+    font-weight: 500;
+    /* color:#fff; */
+  }
+  .home-content .box .number{
+    display: inline-block;
+    font-size: 35px;
+    margin-top: -6px;
+    font-weight: 500;
+    color: black;
+    /* text-decoration: underline; */
+    /* color:#fff; */
+  }
+  .home-content .box .number { transition: all .2s ease-in-out; }
+  .home-content .box .number:hover { transform: scale(1.19); }
+  .box .indicator i.down{
+    background: #e87d88;
+  }
+  .home-content .box .indicator .text{
+    font-size: 12px;
+  }
+  .home-content .box .cart{
+    display: inline-block;
+    font-size: 29px;
+    height: 42px;
+    width: 50px;
+    background: #cce5ff;
+    line-height: 50px;
+    text-align: center;
+    color: #66b0ff;
+    border-radius: 12px;
+    margin: -10px 0 0 6px;
+  }
+  .home-content .box .cart.two{
+    width: 65px;
+     color: #2BD47D;
+     background: #C0F2D8;
+   }
+   h4{
+    float: right;
+    margin-top: 7.5%;
+    margin-right: -18.5%;
+    color: grey;
+  }
+  .center .home-content .overview-boxes .box{
+  background-color: #f6f7ef80;
+  opacity:1;
+}
+  .home-content .box .cart.three{
+    width: 65px;
+     color: #ffc233;
+     background: #ffe8b3;
+   }
+  .home-content .box .cart.four{
+     color: #e05260;
+     background: #f7d4d7;
+   }
+  .home-content .total-order{
+    font-size: 20px;
+    font-weight: 500;
+    
+  }
+  .home-content .sales-boxes{
+    display: flex;
+    justify-content: space-between;
+    /* padding: 0 20px; */
+  }
+  
+  /* left box */
+  .home-content .sales-boxes .recent-sales{
+    width: 65%;
+    background: #fff;
+    padding: 20px 30px;
+    margin: 0 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  .home-content .sales-boxes .sales-details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .sales-boxes .box .title{
+    font-size: 24px;
+    font-weight: 500;
+    /* margin-bottom: 10px; */
+  }
+  /* Right box */
+  .home-content .sales-boxes .top-sales{
+    width: 35%;
+    background: #fff;
+    padding: 20px 30px;
+    margin: 0 20px 0 0;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+#ag{
+  margin-left: 35%;
+}
+.d{
+  font-family:"Roboto";
+   background-color: #dacfcfb0;
+   font-size: 19px;
+   font-weight: bold;
+   /* padding-left: 20px; */
+}
+.d2{
+margin-left: 40%;
+margin-top: -4.5%;
+}
+#fst{
+    margin-right: 0%;
+  }
+  #scd{
+    margin-left: 4;
+    margin-right: -5%;
+  }
+  #thrd{
+    margin-left: 5%;
+  }
+  @media screen and (width:1530px){
+    #pieChart{
+      margin-top: -26%;
+    }
+    #barChart{
+      margin-top: 4%;
+    }
+  }
+
+  @media screen and (width:1920px){
+    .d{
+  font-family:"Roboto";
+   background-color: #dacfcfb0;
+   font-size: 26px;
+   font-weight: bold;
+   /* padding-left: 20px; */
+}
+
+    select{
+      font-size: 20px;
+  height: 35px;
+  border:1.5px solid black;
+  border-radius: 5px;
+  color: #373837;
+  margin-left: 1%;
+  /* margin-: 5%; */
+}
+
+input{
+  color: #08812d;
+  font-size: 26px;
+  font-weight: bold;
+  height: 35px;
+  width: 100px;
+  margin-left: 40%;
+  margin-top: -1.8%;
+  position: absolute;
+  border-radius: 8px;
+}
+     
+label{
+  /* background:#FFCCCC; */
+    /* margin:10px 0 0 0; */
+    display:inline-block;
+  margin-top: 60px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+    .overview-boxes .box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(130% / 4 - 15px);
+    height: 140px;
+    background: rgba(21, 123, 182, 0.1);
+    padding: 15px 14px;
+    border-radius: 12px;
+    box-shadow: 2px 5px 10px rgba(0,0,0,0.1);
+    margin-top: 5%;
+  }
+  .overview-boxes .box-topic{
+    font-size: 25px;
+    font-weight: 500;
+    /* color:#fff; */
+  }
+  .home-content .box .number{
+    display: inline-block;
+    font-size: 45px;
+    margin-top: -6px;
+    font-weight: 500;
+    color: black;
+    /* text-decoration: underline; */
+    /* color:#fff; */
+  }
+
+    #barChart{
+margin-top: 90px;
+  width:590px !important;
+  height:400px !important;
+  margin-left: 0;
+}
+
+    #pieChart{
+  height:800px !important;
+  width:700px !important;
+  margin-top: -25.1%; 
+  margin-left: 50%;
+}
+
+  }
+</style>
+    <body>
+        
+            <div class="header">
+                <a href="/red" class="logo"><img id="img" alt="Anurag" src="../static/images/AUlogo.png" ></a>
+              
+              <div class="righty">
+            
+              <div class="dropdown" >
+                  <button class="right_buttons">
+                    {{name}}
+               
+                  </button></a>
+                  <div class="dropdown-content">
+                    <a href="/logout" >
+                      Logout</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+          <ul>
+            <li><a class="d" href="/das"><span class="i"><i class="fa fa-bars"></i>&emsp;DASHBOARD</span></a></li>
+            <li><a class="current" href ="/programs"><span class="i"><i class="fa fa-tasks"></i>&emsp;Programs</span></a></li>
+              <li><a href ="/admissions"><span class="i" ><i class="fa fa fa-university"></i>&emsp;Admissions</span></a></li>
+            <li><a href="/student"><span class="i"><i class="fa fa-solid fa-user-graduate"></i>&emsp;Students</span></a></li>
+          <li><a href ="/faculty"><span class="i" ><i class="fa fa-solid fa-chalkboard-teacher"></i>&emsp;Faculty</span></a></li>
+          <!-- <li><a href ="/exams"><span class="i"><i class="fa fa-solid fa-question"></i>&emsp;Exams</span></a></li> -->
+          <li><a href ="/research"><span class="i" ><i class="fas fa-solid fa-rupee-sign"></i>&emsp;Research Grants</span></a></li>
+           
+            
+         
+        </div>
+       
+        <script>
+        $(this).toggleClass("click");
+          $('.sidebar').toggleClass("show");
+    
+    
+          $('.feat-btn').click(function(){
+            $('div ul .feat-show').toggleClass("show");
+            $('div ul .first').toggleClass("rotate");
+          });
+          $('div ul li').click(function(){
+            $(this).addClass("active").siblings().removeClass("active");
+          });
+          var xValues = {{dept_names | safe}};
+          var yValues = {{sanc_amount | safe}};
+          tot_dept = yValues.length;
+          // document.write(tot_dept);
+          var pie_x={{status | safe}};
+          var pie_y={{status_count | safe}};
+          var line_x={{year | safe}};
+          var line_y={{sanc_amount_year | safe}};
+          var horiz_x={{agency | safe}};
+          tot_agency = horiz_x.length;
+          var horiz_y={{ sanc_amount_agency | safe}};
+        </script>
+
+    <div class="center">
+     
+      <div class="home-content">
+        <!-- <button class="print-button" onclick="printDiv('home-content')"><span class="print-icon"></span></button> -->
+  
+        <div class="overview-boxes">
+  
+          <div class="box" id="fst">
+            <div class="right-side">
+              <div class="box-topic">Total Programs</div>
+              <br>
+              <a href="/p_programs">
+              <div class="number">{{p | safe}}
+                <!-- <script>document.write(p)</script> -->
+              </div>
+  
+            </div>
+            <div class='bx bx-cart-alt cart'>
+              <i class="fa fa-tasks"></i>
+            </div>
+          </div>
+        </a>
+  
+         
+          <div class="box" id="scd">
+            <div class="right-side">
+              <div class="box-topic">Total Departments</div>
+              <br>
+              <a href="/p_depts">
+              <div class="number">
+                {{d | safe}}
+              </div>
+            </div>
+            <div class='bx bxs-cart-add cart two'>
+             <i class="fas fa-building"></i>
+             </div>
+          </div>
+        </a>
+          <div class="box" id="thrd">
+            <div class="right-side">
+              <div class="box-topic">Total Intake </div>
+              <br>
+              <a href="/p_intake">
+              <div class="number">{{intake}}</div>
+            </div>
+            <div class='bx bxs-cart-add cart three'>
+             <i class="fa fa-download"></i>
+             </div>
+          </div>
+        </a>
+</div>  
+      
+      <form method="POST" action="/p_drop" onsubmit="return mySubmitFunction(event)">
+        <div class="d1">
+        <label for="yos">Select Year of Commencement:</label>
+        <select placeholder="xyz" name="selected_year" id="selected_year">
+          
+          {% for y in year_drop %}
+    <option  value= "{{y}}" SELECTED>{{y}}</option>"
+    {% endfor %}
+    <option value="" selected >Year Of Commencement</option>
+        </select>
+        </div>
+
+
+        <!-- Go button -->
+        <input type="submit" value="GO" name="submit" id="submitorder">
+         <!-- a href="/r_drop">
+        </a> -->
+
+ <script>
+   function mySubmitFunction(e)
+{
+  if(!$('#selected_year').val()){ //check if select got any value
+       alert( "Please select the Year of Commencement" );
+       e.preventDefault();
+       return false;  
+     }
+  // return false;
+}
+ </script>
+</form>
+      <div onresize="res()">
+
+        <!-- <button class="print-button" onclick="window.print()"><span class="print-icon"></span></button>
+        <h4>print</h4> -->
+        <canvas  class="grid-item" id="barChart" ></canvas>
+        <canvas  class="grid-item" id="pieChart"></canvas>
+        <!-- <canvas  class="grid-item" id="doughChart" style="max-height:330px;max-width:350px"></canvas>  -->
+        <!-- <canvas  class="grid-item" id="lineGraph" ></canvas> -->
+        <!-- <canvas  class="grid-item" id="horizBarChart"></canvas>  -->
+
+        
+        </div>
+      </div>
+        <script>
+                    var b = document.getElementById('barChart').getContext('2d');
+
+          var p= document.getElementById('pieChart').getContext('2d');
+          // var l=document.getElementById('lineGraph').getContext('2d');
+
+          
+          
+          var xValues = {{pr | safe}};
+          var yValues = {{pr_count | safe}};
+          var pie_x = {{yr | safe}};
+          var pie_y = {{yr_count | safe}};
+        //   tot_dept = yValues.length;
+        //   var pie_x={{status | safe}};
+        //   var pie_y={{status_count | safe}};
+        //   var line_x={{year | safe}};
+        //   var line_y={{sanc_amount_year | safe}};
+        //   var horiz_x={{agency | safe}};
+        //   tot_agency = horiz_x.length;
+        //   var horiz_y={{ sanc_amount_agency | safe}};
+          var barColors = [
+          'rgba(255, 99, 132, 0.9)',
+      'rgba(255, 159, 64, 0.8)',
+      'rgba(227, 139, 94, 0.9)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.4)',
+      'rgba(153, 102, 255, 0.4)',
+      'rgba(57, 24, 54, 0.4)',
+      'rgba(16, 211, 0, 0.3)',
+      'rgba(242, 211, 0, 0.4)',
+      'rgba(248, 211, 178, 0.8)',
+      'rgba(156, 24, 54, 0.4)',
+      'rgba(125, 255, 200, 0.6)',
+      '#33b2df', '#546E7A', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#90ee7e',
+          '#f48024', '#69d2e7'
+              ];
+
+      var barborder = [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgba(227, 139, 94)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgba(57, 24, 54, 0.8)',
+      'rgba(16, 211, 0)',
+      'rgba(242, 211, 0)',
+      'rgba(255, 99, 71,0.4)',
+      'rgba(156, 24, 54, 0.7)',
+      'rgba(18, 255, 213, 1)'
+      ];
+          //bar chart    
+          var myChart = new Chart(b, {
+              type: 'bar',
+              data: {
+                  labels: xValues,
+                  datasets: [{
+                      // label: 'Funds Granted for each Department',
+                      data: yValues,
+                      backgroundColor: barColors,
+    borderColor: barborder,
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  responsive: false,
+                  scales: {
+                      y: {
+                          beginAtZero: true,
+                      }
+                  },
+                  legend: {display: false},
+                  title: {
+                    display: true,
+                    text: "Program Wise Department Count"
+                  }
+              }
+          });
+          
+          
+          //piechart    
+          var piechart=new Chart("pieChart", {
+                type: "pie",
+                data: {
+                  labels: pie_x,
+                  datasets: [{
+                    backgroundColor: barColors,
+                    // borderColor : 'rgb(105,105,105)',
+                    data: pie_y
+                  }]
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  title: {
+                    fontSize: 16,
+                    display: true,
+                    text: "Programs commenced over the years"
+                  }
+                }
+              });
+              
+
+  function res(){
+    if(window.outerWidth > 1900){
+      Chart.defaults.font.size=60;
+    };
+    if(window.outerWidth > 1520){
+      Chart.defaults.font.size=40;
+    };
+console.log(window.outerWidth);
+  }
+</script>
+
+
+
+
+
+
+</body>
+</html>

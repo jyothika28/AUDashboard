@@ -1,0 +1,13 @@
+pip install flask
+pip install xlrd
+pip install sqlite3
+pip install openpyxl
+
+
+Credentials user
+Email:18h61a1216@cvsr.ac.in
+password:pass
+
+Credentials user
+Email:admin1@gmail.com
+password:shj@100

@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/user_css.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/side.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/all.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/all.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/fontawesome.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/fontawesome.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/solid.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/solid.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/regular.css')}}">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+      
+  </head>
+  <style>
+  
+    button.print-button {
+    width: 60px;
+    height: 65px;
+    /* margin-top: -60vh; */
+    /* margin-left: 180vh; */
+    float: right;
+    margin-right: -15%;
+    margin-top: 2%;
+  
+  }
+  span.print-icon, span.print-icon::before, span.print-icon::after, button.print-button:hover .print-icon::after {
+    border: solid 3px rgb(75, 73, 73);
+  }
+  span.print-icon::after {
+    border-width: 2px;
+  }
+  
+  button.print-button {
+    position: relative;
+    padding: 0;
+    border: 0;
+    
+    border: none;
+    background: transparent;
+  }
+  
+  span.print-icon, span.print-icon::before, span.print-icon::after, button.print-button:hover .print-icon::after {
+    box-sizing: border-box;
+    background-color: #fff;
+  }
+  
+  span.print-icon {
+    position: relative;
+    display: inline-block;  
+    padding: 0;
+    margin-top: 20%;
+  
+    width: 60%;
+    height: 30%;
+    background: #fff;
+    border-radius: 20% 20% 0 0;
+  }
+  
+  span.print-icon::before {
+    content: " ";
+    position: absolute;
+    bottom: 100%;
+    left: 20%;
+    right: 12%;
+    height: 110%;
+  
+    transition: height .2s .15s;
+  }
+  
+  span.print-icon::after {
+    content: " ";
+    position: absolute;
+    top: 55%;
+    left: 12%;
+    right: 12%;
+    height: 0%;
+    background: #fff;
+    background-repeat: no-repeat;
+    background-size: 70% 90%;
+    background-position: center;
+    background-image: linear-gradient(
+      to top,
+      #fff 0, #fff 14%,
+          rgb(81, 139, 206) 14%, rgb(81, 139, 206) 28%,
+          #fff 28%, #fff 42%,
+          rgb(81, 139, 206) 42%, rgb(81, 139, 206) 56%,
+          #fff 56%, #fff 70%,
+          rgb(81, 139, 206) 70%, rgb(81, 139, 206) 84%,
+          #fff 84%, #fff 100%
+    );
+  
+    transition: height .2s, border-width 0s .2s, width 0s .2s;
+  }
+  
+  button.print-button:hover {
+    cursor: pointer;
+  }
+  
+  button.print-button:hover .print-icon::before {
+    height:0px;
+    transition: height .2s;
+  }
+  button.print-button:hover .print-icon::after {
+    height:120%;
+    transition: height .2s .15s, border-width 0s .16s;
+  }
+  h4{
+    float: right; 
+    margin-top: 7.5%;
+    margin-right: -100.5%;
+    margin-left: -5%;
+    color: grey;
+  }
+  
+  
+  .gauge1{
+    width: 100%;
+    max-width: 120px;
+    font-family: "Roboto", sans-serif;
+    font-size: 25px;
+    color: #004033;
+    margin-left: 3%;
+    margin-right: -5%;
+    margin-top: 60%;
+    /* margin-bottom: 20%; */
+    /* padding: -20px; */
+  }
+  .gauge2 {
+    width: 100%;
+    max-width: 120px;
+    font-family: "Roboto", sans-serif;
+    font-size: 25px;
+    color: #004033;
+    margin-left: 24%;
+    margin-right: -5%;
+    margin-bottom: -30%;
+    margin-top: -12.5%;
+    padding: -20px;
+  }
+  .gauge3 {
+    width: 100%;
+    max-width: 120px;
+    font-family: "Roboto", sans-serif;
+    font-size: 25px;
+    color: #004033;
+    margin-left: 45%;
+    margin-right: -5%;
+    margin-top: 17%;
+    margin-bottom: -20%;
+    /* padding: -20px; */
+  }
+  .header{
+    position: -webkit-sticky;
+    position: sticky;
+    top:0;
+    background-color: #fff;
+    bottom: 1px;
+    
+  }
+  .header{
+    opacity: 10;
+    z-index: 999;
+    position: -webkit-sticky;
+    position: sticky;
+    top:0;
+    background-color:white;
+    bottom: 1px;
+    
+  }
+  .gauge__body {
+    width: 100%;
+    height: 0;
+    padding-bottom: 50%;
+    background: #d9dada;
+    position: relative;
+    border-top-left-radius: 100% 200%;
+    border-top-right-radius: 100% 200%;
+    overflow: hidden;
+  }
+  
+  .gauge__fill {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: inherit;
+    height: 100%;
+    background: #65be81;
+    transform-origin: center top;
+    transform: rotate(0.25turn);
+    transition: transform 0.2s ease-out;
+  }
+  
+  .gauge__cover {
+    width: 75%;
+    height: 150%;
+    background: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+  
+    /* Text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 25%;
+    box-sizing: border-box;
+  }
+  
+  
+  
+      .dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    text-align : center;
+    margin-top: -50px;
+    margin-right: 55px;
+    float: right;
+    /* Edit Margin top, right to move the position of the button*/
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  .center{
+      margin-left:5%;
+  
+  }
+  #barChart{
+   
+   /* bottom: 80%; */
+    width:450px !important;
+    height:280px !important;
+    margin-left: 25%;
+    margin-top: 100%;
+  }
+  #pieChart{
+    position: absolute;
+    max-height:320px;
+    max-width:390px;
+    margin-bottom: 0%;
+    margin-top: 37%;
+  }
+  
+  #lineGraph{
+    margin-bottom: 100%;
+    position: absolute;
+    max-height:280px;
+    max-width:380px;
+     
+    margin-top:136%;
+    margin-left: 37%;
+  } 
+  
+  #lineGraph1{
+    position: absolute;
+    max-height:280px;
+    max-width:700px;
+    /* margin-top: 0%; */
+  
+    margin-top: -16%;
+    margin-left:5%;
+  }
+  
+  @media print {
+  
+  div.sidebar{
+  display:none;
+  }
+  
+  div.overview-boxes .box{
+  display: none;
+  }
+  div.header{
+  display:none;
+  }
+  
+  div.gauge1{
+  display: none;
+  }
+  div.gauge2{
+  display: none;
+  }
+  div.gauge3{
+  display: none;
+  }
+  }
+  .center{
+    margin-left: 25%;
+  }
+  @media print {
+  
+    div.sidebar{
+  display:none;
+  }
+  
+  div.overview-boxes .box{
+    display: none;
+  }
+  div.header{
+  display:none;
+  }
+    
+  div.gauge1{
+    display: none;
+  }
+  div.gauge2{
+    display: none;
+  }
+  div.gauge3{
+    display: none;
+  }
+  }
+  
+  .grid-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background: rgb(255, 255, 255);
+    padding: 15px 14px;
+    border-radius: 12px;
+    box-shadow: 2px 7px 12px rgba(0,0,0,0.1);
+  } 
+  
+  h2{
+    font-size: 40px;
+  
+  }
+  .home-content .overview-boxes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 18spx;
+    margin-bottom: 26px;
+  }
+  .overview-boxes .box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(130% / 4 - 15px);
+    height: 100px;
+    background: rgba(21, 123, 182, 0.1);
+    padding: 15px 14px;
+    border-radius: 12px;
+    box-shadow: 2px 5px 10px rgba(0,0,0,0.1);
+    margin-top: 5%;
+  }
+  .overview-boxes .box-topic{
+    font-size: 20px;
+    font-weight: 500;
+    /* color:#fff; */
+  }
+  .home-content .box .number{
+    display: inline-block;
+    font-size: 35px;
+    margin-top: -6px;
+    font-weight: 500;
+    color: black;
+    /* color:#fff; */
+  }
+  .home-content .box .number { transition: all .2s ease-in-out; }
+  .home-content .box .number:hover { transform: scale(1.19); }
+  .box .indicator i.down{
+    background: #e87d88;
+  }
+  .home-content .box .indicator .text{
+    font-size: 12px;
+  }
+  .home-content .box .cart{
+    display: inline-block;
+    font-size: 29px;
+    height: 42px;
+    width: 50px;
+    background: #cce5ff;
+    line-height: 50px;
+    text-align: center;
+    color: #66b0ff;
+    border-radius: 12px;
+    margin: -10px 0 0 6px;
+  }
+  .home-content .box .cart.two{
+    width: 65px;
+     color: #2BD47D;
+     background: #C0F2D8;
+   }
+   h4{
+    float: right;
+    margin-top: 7.5%;
+    margin-right: -18.5%;
+    color: grey;
+  }
+  .center .home-content .overview-boxes .box{
+  background-color: #f6f7ef80;
+  opacity:1;
+}
+  .home-content .box .cart.three{
+    width: 65px;
+     color: #ffc233;
+     background: #ffe8b3;
+   }
+  .home-content .box .cart.four{
+     color: #e05260;
+     background: #f7d4d7;
+   }
+  .home-content .total-order{
+    font-size: 20px;
+    font-weight: 500;
+    
+  }
+  .home-content .sales-boxes{
+    display: flex;
+    justify-content: space-between;
+    /* padding: 0 20px; */
+  }
+  
+  /* left box */
+  .home-content .sales-boxes .recent-sales{
+    width: 65%;
+    background: #fff;
+    padding: 20px 30px;
+    margin: 0 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  .home-content .sales-boxes .sales-details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .sales-boxes .box .title{
+    font-size: 24px;
+    font-weight: 500;
+    /* margin-bottom: 10px; */
+  }
+  /* Right box */
+  .home-content .sales-boxes .top-sales{
+    width: 35%;
+    background: #fff;
+    padding: 20px 30px;
+    margin: 0 20px 0 0;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .current{
+    color: rgb(255, 255, 255)!important;
+  background: #5a5858!important;
+  border-left-color: white;
+  }
+  /* div ul ul li a:hover{
+  color: rgb(255, 255, 255)!important;
+  background: #5a5858!important;
+  } */
+  .d{
+    font-family:"Roboto";
+     background-color: #dacfcfb0;
+     font-size: 19px;
+     font-weight: bold;
+     /* padding-left: 20px; */
+  }
+  select{
+    height: 25px;
+    border:1.5px solid black;
+    border-radius: 5px;
+    color: #373837;
+  }
+  
+  input{
+    color: #08812d;
+    font-size: 16px;
+    font-weight: bold;
+    height: 25px;
+    width: 80px;
+    margin-left: 60%;
+    margin-top: 0.35%;
+    position: absolute;
+    border-radius: 4px;
+  }
+       
+  label{
+    /* background:#FFCCCC; */
+      /* margin:10px 0 0 0; */
+      display:inline-block;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  #ys{
+    margin-right: 25%;
+    margin-left: 0.5%;
+  }
+  
+  #d{
+    margin-left: 0.5%;
+  }
+  
+  /* .selected_year{
+    margin-top: 100%;
+  } */
+  #second{
+    margin-right: 10%;
+  }
+  #ag{
+    margin-left: 35%;
+  }
+  .d{
+    font-family:"Roboto";
+     background-color: #dacfcfb0;
+     font-size: 19px;
+     font-weight: bold;
+     /* padding-left: 20px; */
+  }
+  .d2 {
+  margin-left:300px;
+  margin-top: -7vh;
+  margin-bottom: -5vh;
+  }
+  .d3 {
+  margin-left:500px;
+  margin-top: -7vh;
+  margin-bottom: -5vh;
+  }
+  .d1 {
+  /* margin-left:320px; */
+  margin-top: 5vh;
+  margin-bottom: -5vh;
+  }
+  table {
+          margin-top: 2%;
+          margin-left: 20vh;
+          padding-left: 10%;
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      /* margin-bottom: -40%; */
+  }
+  
+  td{
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+      border:none;
+  } 
+  
+  th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+      background-color: #012b5ad8;
+      color:#fff;
+      border:none;
+  }
+  
+  tr:nth-child(even) {
+      background-color: #dbf3f3bb;
+  }
+  h3{
+      margin-top: 10%;
+      margin-right: -19%;
+  margin-left: 47%;
+  }
+  
+  #fst{
+    margin-right: 0%;
+  }
+  #scd{
+    margin-left: 2.5%;
+    margin-right: -11%;
+  }
+  #thrd{
+    margin-left: 12%;
+  }
+
+  @media screen and (width:1530px){
+    .d2{
+      margin-top: 2%;
+    }
+    .d3{
+      margin-top: 1%;
+    }
+    .go{
+      margin-top: 3%;
+    }
+    #lineGraph1{
+      margin-left: -5%;
+    }
+    #lineGraph{
+      margin-top: 84%;
+      margin-left: 47%;
+    }
+   
+
+  }
+  @media screen and (width:1920px){
+    /* select{
+  height: 35px;
+  border:1.5px solid black;
+  border-radius: 5px;
+  color: #373837;
+  margin-left: 1%;
+  font-size: 20px;
+  /* margin-: 5%; 
+} */
+
+    .overview-boxes .box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(130% / 4 - 15px);
+    height: 140px;
+    background: rgba(21, 123, 182, 0.1);
+    padding: 15px 14px;
+    border-radius: 12px;
+    box-shadow: 2px 5px 10px rgba(0,0,0,0.1);
+    margin-top: 5%;
+  }
+  .overview-boxes .box-topic{
+    font-size: 25px;
+    font-weight: 500;
+    /* color:#fff; */
+  }
+  .home-content .box .number{
+    display: inline-block;
+    font-size: 45px;
+    margin-top: -6px;
+    font-weight: 500;
+    color: black;
+    /* text-decoration: underline; */
+    /* color:#fff; */
+  }
+    .d1 {
+  margin-top: 7%;
+margin-left: 9%;
+  float:left;
+  }
+  
+  .d2 {
+   margin-left:60%;
+  margin-top: 5.2vh;
+  /* margin-bottom: -5vh; */
+  
+  }
+  .d3 {
+  margin-right:-40%;
+  margin-top: -1%;
+  /* margin-left:580px; */
+  float: right;
+  }
+
+  .d4 {
+  margin-right:190%;
+  margin-top: -1vh;
+  }
+
+
+  label{
+    font-size: 20px;
+  }
+  h3{ 
+    margin-top: 10vh;
+    margin-right: 30%;
+    /* text-align: center; */
+  }
+  table {
+          margin-top: 1%;
+          margin-left: 0vh;
+          padding-left: 10%;
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      /* margin-bottom: -40%; */
+  }
+  #lineGraph1{
+    position: absolute;
+    margin-top: 25px;
+    max-height:280px;
+    max-width:700px;
+    margin-top:48%;
+margin-left: 13%;
+  }
+  #lineGraph{
+    position: absolute;
+    max-height:280px;
+    max-width:380px;
+    margin-top:22%;
+    margin-left: 44%;
+  } 
+  #barChart{
+    position: absolute;
+    width:700px !important;
+    height:320px !important;
+    margin-left: 30%;
+    margin-top: 85%;
+  }
+  #pieChart{
+    position: absolute;
+    width:700px;
+    height:320px;
+    margin-bottom: 0%;
+    margin-top: 85%;
+    margin-left: 5%;
+    
+  }
+  input{
+    color: #08812d;
+    font-size: 16px;
+    font-weight: bold;
+    height: 25px;
+    width: 80px;
+    margin-left: 50%;
+    margin-top: 0.8%;
+    position: absolute;
+    border-radius: 4px;
+  }
+  select{
+      font-size: 15px;
+  height: 35px;
+  border:1.5px solid black;
+  border-radius: 5px;
+  color: #373837;
+  /* margin-left: 1%; */
+  /* margin-: 5%; */
+}
+.d{
+  font-family:"Roboto";
+   background-color: #dacfcfb0;
+   font-size: 26px;
+   font-weight: bold;
+   /* padding-left: 20px; */
+}
+}
+  </style>
+ 
+    
+        
+            <div class="header">
+                <a href="/red" class="logo"><img id="img" alt="Anurag" src="../static/images/AUlogo.png" ></a>
+              
+              <div class="righty">
+              <div class="dropdown" >
+                  <button class="right_buttons">
+
+                    {{name}}
+                  </button></a>
+                  <div class="dropdown-content">
+                    <a href="/logout" >
+                      Logout</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+          <ul>
+            <li><a class="d" href="/das"><span class="i"><i class="fa fa-bars"></i>&emsp;DASHBOARD</span></a></li>
+            <li><a href ="/programs"><span class="i"><i class="fa fa-tasks"></i>&emsp;Programs</span></a></li>
+              <li><a href ="/admissions"><span class="i" ><i class="fa fa fa-university"></i>&emsp;Admissions</span></a></li>
+            <li><a class="current" href="/student"><span class="i"><i class="fa fa-solid fa-user-graduate"></i>&emsp;Students</span></a></li>
+          <li><a href ="/faculty"><span class="i" ><i class="fa fa-solid fa-chalkboard-teacher"></i>&emsp;Faculty</span></a></li>
+          <!-- <li><a href ="/exams"><span class="i"><i class="fa fa-solid fa-question"></i>&emsp;Exams</span></a></li> -->
+          <li><a href ="/research"><span class="i" ><i class="fas fa-solid fa-rupee-sign"></i>&emsp;Research Grants</span></a></li>
+           
+        </div>
+       
+        <script>
+        $(this).toggleClass("click");
+          $('.sidebar').toggleClass("show");
+    
+    
+          $('.feat-btn').click(function(){
+            $('div ul .feat-show').toggleClass("show");
+            $('div ul .first').toggleClass("rotate");
+          });
+          $('div ul li').click(function(){
+            $(this).addClass("active").siblings().removeClass("active");
+          });
+        </script>
+
+    <body>
+
+
+<div id="print-content">  
+  <div class="center">
+    <button class="print-button" onclick="window.print()"><span class="print-icon"></span></button>
+    <!-- <h4>print</h4> -->
+    <div class="home-content">
+      <!-- <button class="print-button" onclick="printDiv('home-content')"><span class="print-icon"></span></button> -->
+
+      <div class="overview-boxes">
+
+        <div class="box" id="fst">
+          <div class="right-side">
+            <div class="box-topic">Total Students</div>
+            <br>            
+            <a href="/students_t">
+            <div class="number">{{no}}</div>
+
+          </div>
+          <div class='bx bx-cart-alt cart'>
+            <i class="fa fa-solid fa-user-graduate"></i>
+          </div>
+        </div>
+      </a>
+       
+        <div class="box" id="scd">
+          <div class="right-side">
+            <div class="box-topic">Total Male Students</div>
+            <br>
+            <a href="/students_mf">
+            <div class="number">{{m}}</div>
+          </div>
+          <div class='bx bxs-cart-add cart two'>
+           <i class="fa fa-solid fa-male"></i>
+           </div>
+        </div>
+        </a>
+
+        <div class="box" id="thrd">
+          <div class="right-side">
+            <div class="box-topic">Total Female Students</div>
+            <br>
+            <a href="/students_f">
+            <div class="number">{{f}}</div>
+          </div>
+          <div class='bx bxs-cart-add cart three'>
+           <i class="fa fa-solid fa-female"></i>
+           </div>
+        </div>
+      </a>
+
+
+      <form method="POST" action="/s_drop">
+        <div class="d1">
+        <label for="yos">Select Program:</label>
+        <select placeholder="xyz" name="selected_year" id="selected_year" required>
+          
+          {% for y in d_drop %}
+        <option  value= "{{y}}" SELECTED>{{y}}</option>"
+        {% endfor %}
+        <option value="" required disabled selected >Program</option>
+            </select>
+        </div>
+        
+
+        <div class="d2">
+          <label for="branch" id="#third">Branch :</label>
+          <select class="subcat" name="selected_branch" id="category3" required>
+            <!-- <option value="" selected >Program</option> -->
+            {% for i,j in dd.items() %}
+            <optgroup data-rel="{{i}}">
+              {% for b in og1[j-1] %}
+      <option  value= "{{b}}" SELECTED>{{b}}</option>"
+      {% endfor %}
+            </optgroup>
+            {% endfor %}         
+            <option value="" required disabled selected >Branch</option>
+          </select>
+          </div>
+
+        <div class="d3">
+        <label for="dept" id="#second">Year :</label>
+        <select class="subcat" name="selected_dept" id="category2" required>
+          <!-- <option value="" selected >Program</option> -->
+          {% for i,j in dd.items() %}
+          <optgroup data-rel="{{i}}">
+            {% for d in og[j-1] %}
+    <option  value= "{{d}}" SELECTED>{{d}}</option>"
+    {% endfor %}
+          </optgroup>
+          {% endfor %}         
+          <option value="" required disabled selected >Year</option>
+        </select>
+        </div>
+
+
+        
+
+      <div class="go">
+        <input type="submit" value="GO" name="submit" id="submitorder">
+      </div>
+
+        <!-- Go button -->
+        
+        
+        <script>
+          $(function(){
+    var $cat = $("#selected_year"),
+        $subcat = $(".subcat");
+    var optgroups = {};
+    $subcat.each(function(i,v){
+    	var $e = $(v);
+    	var _id = $e.attr("id");
+			optgroups[_id] = {};
+			$e.find("optgroup").each(function(){
+      	var _r = $(this).data("rel");
+        $(this).find("option").addClass("is-dyn");
+      	optgroups[_id][_r] = $(this).html();
+			});
+    });
+    $subcat.find("optgroup").remove();
+    
+    var _lastRel;
+    $cat.on("change",function(){
+        var _rel = $(this).val();
+        if(_lastRel === _rel) return true;
+        _lastRel = _rel;
+        $subcat.find("option").attr("style","");
+        $subcat.val("");
+        $subcat.find(".is-dyn").remove();
+        if(!_rel) return $subcat.prop("disabled",true);
+        $subcat.each(function(){
+        	var $el = $(this);
+          var _id = $el.attr("id");
+          $el.append(optgroups[_id][_rel]);
+        });
+        $subcat.prop("disabled",false);
+    });
+});
+</script>
+
+
+<script>
+  $(function(){
+    var $cat = $("#category2"),
+        $subcat = $(".subcat");
+    var optgroups = {};
+    $subcat.each(function(i,v){
+    	var $e = $(v);
+    	var _id = $e.attr("id");
+			optgroups[_id] = {};
+			$e.find("optgroup").each(function(){
+      	var _r = $(this).data("rel");
+        $(this).find("option").addClass("is-dyn");
+      	optgroups[_id][_r] = $(this).html();
+			});
+    });
+    $subcat.find("optgroup").remove();
+    
+    var _lastRel;
+    $cat.on("change",function(){
+        var _rel = $(this).val();
+        if(_lastRel === _rel) return true;
+        _lastRel = _rel;
+        $subcat.find("option").("style","");
+        $subcat.val("");
+        $subcat.find(".is-dyn").remove();
+        if(!_rel) return $subcat.prop("disabled",true);
+        $subcat.each(function(){
+        	var $el = $(this);
+          var _id = $el.attr("id");
+          $el.append(optgroups[_id][_rel]);
+        });
+        $subcat.prop("disabled",false);
+    });
+});
+      </script>
+
+
+</form>
+
+<h3>Gender vs Caste Table</h3>
+{% for table in g_tables %}
+{{ table|safe }}
+{% endfor %}
+
+        
+<canvas  class="grid-item" id="lineGraph1" ></canvas> 
+<canvas  class="grid-item" id="lineGraph" ></canvas> 
+
+         <!-- <canvas  class="grid-item" id="horizBarChart"></canvas>  -->
+      
+          <canvas  class="grid-item" id="pieChart"></canvas>
+        <!-- <canvas  class="grid-item" id="doughChart"></canvas>  -->
+        <canvas  class="grid-item" id="barChart" ></canvas>
+      <!--  <canvas  class="grid-item" id="multiChart" ></canvas> -->
+        <!-- <canvas  class="grid-item" id="radarChart" style="max-height:350px;max-width:400px"></canvas>  -->
+
+        </div>
+        <script>
+          var b = document.getElementById('barChart').getContext('2d');
+          // var d= document.getElementById('doughChart').getContext('2d');
+          var p= document.getElementById('pieChart').getContext('2d');
+          var l= document.getElementById('lineGraph').getContext('2d');
+          var l1= document.getElementById('lineGraph1').getContext('2d');
+
+          // // var r= document.getElementById('radarChart').getContext('2d');
+          // var h= document.getElementById('horizBarChart').getContext('2d');
+          // var m = document.getElementById('multiChart').getContext('2d');
+
+          var xValues = {{course_names | safe}};
+          var yValues = {{course_values | safe}};
+          var barColors = [
+          'rgba(75, 192, 192, 0.4)',
+          'rgba(57, 24, 54, 0.7)',
+          'rgba(156, 24, 54, 0.4)',
+          'rgba(255, 99, 132, 0.6)',
+      'rgba(255, 159, 64, 0.6)',
+      'rgba(227, 139, 94, 0.6)',
+      'rgba(54, 162, 235, 0.4)',
+      'rgba(248, 211, 178, 0.6)',
+      'rgba(156, 24, 54, 0.4)',
+      'rgba(125, 255, 200, 0.6)'
+              ];
+
+          //bar chart    
+          var myChart = new Chart(b, {
+              type: 'bar',
+              data: {
+                  labels: {{le_branch | safe}},
+                  datasets: [{
+                      label: ' Lateral Entry Count',
+                      data: {{le_count | safe}},
+                      backgroundColor: barColors,
+                      borderColor: [
+                      'rgba(75, 192, 192)',
+          'rgba(57, 24, 54 )',
+          'rgba(156, 24, 54)'
+                      ],
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                scales: {
+                yAxes: [{
+                    ticks: {
+                        fontColor: "black",
+                        // stepSize: 1,
+                        beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: "black",
+                        // stepSize: 1,
+                        beginAtZero: true
+                    }
+                }],
+            },
+                  responsive: false,
+                  scales: {
+                yAxes: [{
+                    ticks: {
+                        fontColor: "black",
+                        // stepSize: 1,
+                        beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: "black",
+                        // stepSize: 1,
+                        beginAtZero: true,
+                        fontSize:10
+                    }
+                }],
+                  },
+                  legend: {display: false},
+                  title: {
+                    display: true,
+                    fontSize: 15,
+                    text: "Department wise Lateral Entry Count"
+                  }
+              }
+          });
+          
+          
+          //piechart    
+          var piechart=new Chart("pieChart", {
+                type: "pie",
+                data: {
+                  labels: {{ug_year_count | safe}},
+                  datasets: [{
+                    backgroundColor: barColors,
+                    data:{{ug_years | safe}}
+                  }]
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  title: {
+                    display: true,
+                    fontSize: 15,
+                    text: "UG Students Year Details"
+                  }
+                }
+              });
+
+
+          // doughnut
+          var doughchart=new Chart("doughChart", {
+            type: "doughnut",
+            data: {
+              labels: {{ug_branch_count | safe}},
+              datasets: [{
+                backgroundColor: barColors,
+                data: {{ug_branch | safe}}
+              }]
+            },
+            options: {
+              title: {
+                display: true,
+                fontSize: 15,
+                text: "UG Students Branch Details"
+              }
+            }
+          });
+
+
+lx={{alpha1 | safe}};
+ly1={{mc | safe}};
+ly2={{fc | safe}};
+//gender line graph
+          var linegraph1 = new Chart("lineGraph1", {
+  type: "line",
+  data: {
+    labels: lx,
+    datasets: [{
+                      label : 'Caste Details of{{s_year | safe}} Male Students',
+                      data: ly1,
+                      backgroundColor: 'rgba(16, 211, 0, 0.3)',
+                      borderColor:'rgba(16, 211, 0, 1)',
+                      borderWidth: 1,
+                      tension : 0.4
+                  },
+                  {
+                      label : 'Caste Details of {{s_year | safe}} Female Students',
+                      data: ly2,
+                      backgroundColor: 'rgba(156, 24, 54, 0.3)',
+                      borderColor:'rgba(156, 24, 54, 1)',
+                      borderWidth: 1,
+                      tension : 0.4
+                  }
+                  ]
+  },
+  options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                //   legend: {display: false},
+                  title: {
+                    display: true,
+                    fontSize:16,
+                    text: "Gender vs Caste Count"
+                  },
+                  scales: {
+                yAxes: [{
+                    ticks: {
+                        fontColor: "black",
+                        // stepSize: 1,
+                        beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: "black",
+                        // stepSize: 1,
+                        beginAtZero: true
+                    }
+                }],
+                  }
+                  
+                }
+              });
+
+//line graph
+  var linegraph = new Chart("lineGraph", {
+  type: "doughnut",
+  data: {
+    labels: {{pg_year_count |safe}},
+    datasets: [{
+                      label: 'Course ',
+                      data: {{pg_years | safe}},
+                      backgroundColor: barColors,
+      borderColor: "rgba(67, 68, 71,0.4)",
+                      borderWidth: 1,
+                      tension : 0.4
+                  }]
+  },
+  options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  // legend: {display: false},
+                  title: {
+                    fontSize: 15,
+                    display: true,
+                    text: "PG Students Year Details"
+                  },
+                
+                
+                }
+              });
+
+//horiz bar chart
+var horizbarchart=new Chart("horizBarChart", {
+                type: "horizontalBar",
+                data: {
+                  labels: xValues,
+                  datasets: [{
+                    fill: true,
+                   backgroundColor:barColors,
+                   borderColor: '#000000',
+                  //  [
+                      // 'rgba(75, 192, 192)',
+          // 'rgba(57, 24, 54 )',
+          // 'rgba(156, 24, 54)'
+                      // ],
+                    data: yValues
+                  }]
+                },
+                options: {
+                  scales: {
+                yAxes: [{
+                    ticks: {
+                        fontColor: "black",
+                        // stepSize: 1,
+                        beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: "black",
+                        // stepSize: 1,
+                        beginAtZero: true
+                    }
+                }],
+            },
+                  responsive: true,
+                  legend: {display: false},
+                  maintainAspectRatio: false,
+                  title: {
+                    display: true,
+                    fontSize: 15,
+                    text: "Student Courses"
+                  }
+                }
+              });
+
+
+//multichart
+          var multichart=new Chart("multiChart", {
+                type: "bar",
+                data: {
+                  categoryPercentage : 1.0,
+                    barPercentage: 0.5,
+                  labels: {{ug_branch_count | safe}},
+                  
+                  datasets: [{
+                    label:'UG COUNT',
+                    backgroundColor: 'rgba(255,99,132, 0.4)',
+                    borderColor: 'rgba(255,99,132,1)',
+                    borderWidth: 1,
+                    data:{{ug_branch | safe}}
+                  },
+                  {
+                    label:'PG COUNT',
+                    backgroundColor: 'rgba(57, 24, 54, 0.6)',
+                    borderColor: 'rgba(57, 24, 54, 1)',
+                    borderWidth: 1,
+                    data:{{pg_branch | safe}}
+                  },
+                  {
+                    label:'PhD COUNT',
+                    backgroundColor: 'rgba(54,162,235, 0.4)',
+                    borderColor: 'rgba(54,162,235, 1)',
+                    borderWidth: 1,
+                    data:{{phd_branch | safe}}
+                  }
+                  ]
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  xAxes: [{
+            barPercentage: 0.4
+        }],
+                  title: {
+                    display: true,
+                    // fontColor: "black",
+                    fontSize: 17,
+                    text: "Department wise Student Courses"
+                  },
+                  legend: {
+                    labels: {
+                    // fontColor: "black",
+                    fontSize: 14
+                }
+                  },
+                  scales: {
+                yAxes: [{
+                    ticks: {
+                        fontColor: "black",
+                        fontSize: 15,
+                        stepSize: 1,
+                        beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: "black",
+                        fontSize: 15,
+                        stepSize: 1,
+                        beginAtZero: true
+                    }
+                }],
+            }
+
+
+                }
+              });
+
+
+</script>
+</div> 
+</div>
+</div>
+
+<script type="text/javascript">
+  function printDiv(divName) {
+window.print();
+  }
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for ('static',filename='css/user_css.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/side.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/all.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/all.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/fontawesome.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/fontawesome.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/solid.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/solid.min.css')}}">
+      <link rel="stylesheet" href="{{ url_for ('static',filename='css/regular.css')}}">
+      <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+  </head>
+
+<style>
+  button.print-button {
+  width: 60px;
+  height: 65px;
+  /* margin-top: -60vh; */
+  /* margin-left: 180vh; */
+  float: right;
+  margin-right: -20%;
+  margin-top: 2%;
+
+}
+span.print-icon, span.print-icon::before, span.print-icon::after, button.print-button:hover .print-icon::after {
+  border: solid 3px rgb(75, 73, 73);
+}
+span.print-icon::after {
+  border-width: 2px;
+}
+
+button.print-button {
+  position: relative;
+  padding: 0;
+  border: 0;
+  
+  border: none;
+  background: transparent;
+}
+
+span.print-icon, span.print-icon::before, span.print-icon::after, button.print-button:hover .print-icon::after {
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+span.print-icon {
+  position: relative;
+  display: inline-block;  
+  padding: 0;
+  margin-top: 20%;
+
+  width: 60%;
+  height: 30%;
+  background: #fff;
+  border-radius: 20% 20% 0 0;
+}
+
+span.print-icon::before {
+  content: " ";
+  position: absolute;
+  bottom: 100%;
+  left: 20%;
+  right: 12%;
+  height: 110%;
+
+  transition: height .2s .15s;
+}
+
+span.print-icon::after {
+  content: " ";
+  position: absolute;
+  top: 55%;
+  left: 12%;
+  right: 12%;
+  height: 0%;
+  background: #fff;
+  background-repeat: no-repeat;
+  background-size: 70% 90%;
+  background-position: center;
+  background-image: linear-gradient(
+    to top,
+    #fff 0, #fff 14%,
+        rgb(81, 139, 206) 14%, rgb(81, 139, 206) 28%,
+        #fff 28%, #fff 42%,
+        rgb(81, 139, 206) 42%, rgb(81, 139, 206) 56%,
+        #fff 56%, #fff 70%,
+        rgb(81, 139, 206) 70%, rgb(81, 139, 206) 84%,
+        #fff 84%, #fff 100%
+  );
+
+  transition: height .2s, border-width 0s .2s, width 0s .2s;
+}
+
+button.print-button:hover {
+  cursor: pointer;
+}
+
+button.print-button:hover .print-icon::before {
+  height:0px;
+  transition: height .2s;
+}
+button.print-button:hover .print-icon::after {
+  height:120%;
+  transition: height .2s .15s, border-width 0s .16s;
+}
+h4{
+  float: right;
+  margin-top: 7.5%;
+  margin-right: -18.5%;
+  color: grey;
+}
+
+.feat-show.show{
+  background: rgb(66, 63, 63);
+ color: #fff;
+}
+.header{
+  opacity: 10;
+  z-index: 999;
+  position: -webkit-sticky;
+  position: sticky;
+  top:0;
+  background-color:white;
+  bottom: 1px;
+}
+.current{
+  color: rgb(255, 255, 255)!important;
+background: #5a5858!important;
+border-left-color: white;
+}
+.grid-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  background: rgb(255, 255, 255);
+  padding: 15px 14px;
+  border-radius: 12px;
+  box-shadow: 2px 7px 12px rgba(0,0,0,0.1);
+}
+    .dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+.header{
+  position: -webkit-sticky;
+  position: sticky;
+  top:0;
+  background-color: #fff;
+  bottom: 1px;
+  
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  text-align : center;
+  margin-top: -5px;
+  margin-right: 55px;
+  float: right;
+  /* Edit Margin top, right to move the position of the button*/
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.center{
+    margin-left:5%;
+
+}
+#barChart{
+
+  width:450px !important;
+  height:325px !important;
+  margin-left: 0;
+  margin-top: 1%;
+}
+
+#pieChart{
+  margin-left: 50%;
+  margin-top: -30%;
+  max-height:300px;
+  max-width:370px
+  
+}
+
+
+#doughChart{
+margin-left: 3%;
+margin-top: 3%;
+}
+
+#lineGraph{
+  position: absolute;
+  max-height:280px;
+  max-width:400px;
+  /* margin-top: 5%; */
+  margin-top: -22%;
+  margin-left: 36%;
+}
+#mulbarGraph{
+
+  width:850px !important;
+  height:300px !important;
+  margin-left: 0;
+}
+.center{
+  margin-left: 25%;
+}
+@media print {
+
+div.sidebar{
+display:none;
+}
+
+div.overview-boxes .box{
+display: none;
+}
+div.header{
+display:none;
+}
+
+div.gauge1{
+display: none;
+}
+div.gauge2{
+display: none;
+}
+div.gauge3{
+display: none;
+}
+}
+.righty{
+  margin-top:18px;
+}
+
+#horizBarChart{
+max-height:500px;
+max-width:850px;
+margin-top: 40px;
+}
+</style>
+    <body>
+        
+            <div class="header">
+                <a href="/red" class="logo"><img id="img" alt="Anurag" src="../static/images/AUlogo.png" ></a>
+                <!--<div class="header-right">
+                  <a class="active" href="#home">Home</a>
+                  <a href="#contact">Contact</a>
+                  <a href="#about">About</a>
+              </div>-->
+              <div class="righty">
+              <!--<a href="#"><button class="right_buttons">About</button></a>-->
+              <div class="dropdown" >
+                  <button class="right_buttons">
+                    {{name}}
+                    <!-- <script type="text/javascript">
+                      document.write(name)
+                    </script> -->
+                  </button></a>
+                  <div class="dropdown-content">
+                    <a href="/logout" >
+                      Logout</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+          <ul>
+            <li><a class="d" href="/das"><span class="i"><i class="fa fa-bars"></i>&emsp;DASHBOARD</span></a></li>
+
+            <li><a class="d" href="/das"><span class="i"><i class="fa fa-bars"></i>&emsp;DASHBOARD</span></a></li>
+            <li><a href ="/programs"><span class="i"><i class="fa fa-tasks"></i>&emsp;Programs</span></a></li>
+              <li><a href ="/admissions"><span class="i" ><i class="fa fa fa-university"></i>&emsp;Admissions</span></a></li>
+            <li><a href="/student"><span class="i"><i class="fa fa-solid fa-user-graduate"></i>&emsp;Students</span></a></li>
+          <li><a href ="/faculty"><span class="i" ><i class="fa fa-solid fa-chalkboard-teacher"></i>&emsp;Faculty</span></a></li>
+          <li><a href ="/exams"><span class="i"><i class="fa fa-solid fa-question"></i>&emsp;Exams</span></a></li>
+          <li><a href ="/research"><span class="i" ><i class="fas fa-solid fa-rupee-sign"></i>&emsp;Research Grants</span></a></li>
+           
+            <li>
+              <a href="#" class="feat-btn"><span class="i" ><i class="fa fa-solid fa-book"></i>&emsp;Publications
+                <nav class="fas fa-caret-down first"></nav>
+              </a>
+              <ul class="feat-show">
+                <li><a href="/it_viz">IT</a></li>
+                <li><a href="/cse_viz">CSE</a></li>
+                <li><a href="/ece_viz">ECE</a></li>
+                <li><a href="/eee_viz">EEE</a></li>
+                <li><a href="/mech_viz">MECH</a></li>
+                <li><a href="/chem_viz">CHEM</a></li>
+
+              </ul>
+            </li>
+           
+            <li><a href ="/consultancy_viz"><span class="i"><i class="fa fa-solid fa-handshake"></i>&emsp;Consultancy</span></a></li>
+              <li><a href ="/support"><span class="i" ><i class="fa fa-solid fa-users"></i>&emsp;Support Staff</span></a></li>
+              <li><a href ="#"><span class ="i"><i class="fa fa-duotone fa-award fa-lg"></i>&emsp;Accreditations</span></a></li>
+              <li><a href ="#"><span class="i" ><i class="fa fa-solid fa-poll"></i>&emsp;Rankings</span></a></li>
+              <li><a href ="#"><span class="i" ><i class="fa fa-solid fa-trophy fa-1px" ></i>&emsp;Results</span></a></li>
+              
+        
+          </ul>
+        </div>
+       
+        <script>
+        $(this).toggleClass("click");
+          $('.sidebar').toggleClass("show");
+    
+    
+          $('.feat-btn').click(function(){
+            $('div ul .feat-show').toggleClass("show");
+            $('div ul .first').toggleClass("rotate");
+          });
+
+          $('div ul .feat-show').toggleClass("show");
+            $('div ul .first').toggleClass("rotate");
+
+          $('div ul li').click(function(){
+            $(this).addClass("active").siblings().removeClass("active");
+          });
+        </script>
+
+    <div class="center">
+        
+      <div>
+        <button class="print-button" onclick="window.print()"><span class="print-icon"></span></button>
+        <h4>print</h4>
+        
+        <canvas  class="grid-item" id="barChart" ></canvas>
+        
+        <canvas  class="grid-item" id="pieChart" style="max-height:300px;max-width:370px"></canvas>
+        <canvas  class="grid-item" id="horizBarChart"></canvas> 
+        </div>
+      </div>
+        <script>
+          
+          var b = document.getElementById('barChart').getContext('2d');
+          
+          var p= document.getElementById('pieChart').getContext('2d');
+          
+          var h= document.getElementById('horizBarChart').getContext('2d');
+
+          
+          
+          var xValues = {{gb1_year | safe}};
+          var yValues = {{gb1_count | safe}};
+          var pie_x={{gb2_cat | safe}};
+          var pie_y={{gb2_count | safe}};
+          var line_x={{gb1_year | safe}};
+          var line_y={{gb1_count | safe}};
+          var horiz_x={{gb4_journal | safe}};
+          var horiz_y={{ gb4_count | safe}};
+          var barColors = [
+          'rgba(255, 99, 132, 0.7)',
+      'rgba(255, 159, 64, 0.9)',
+      'rgba(115, 161, 100,0.8)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.8)',
+      'rgba(153, 102, 255, 0.4)',
+      'rgba(57, 24, 54, 0.5)',
+      'rgba(16, 211, 0, 0.7)',
+      'rgba(242, 211, 0, 0.7)',
+      'rgba(107, 21, 59,0.8)',
+      'rgba(156, 24, 54, 0.8)',
+      'rgba(125, 255, 200, 0.6)',
+      '#33b2df', '#546E7A', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#90ee7e',
+          '#f48024', '#69d2e7'
+              ];
+
+      var barborder = [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgba(115, 161, 100,1)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgba(57, 24, 54, 0.8)',
+      'rgba(16, 211, 0)',
+      'rgba(242, 211, 0)',
+      'rgba(255, 99, 71,0.4)',
+      'rgba(156, 24, 54, 0.7)',
+      'rgba(18, 255, 213, 1)'
+      ];
+          //bar chart    
+          var myChart = new Chart(b, {
+              type: 'bar',
+              data: {
+                  labels: xValues,
+                  datasets: [{
+                      label: 'ECE Publications over the Years',
+                      data: yValues,
+                      backgroundColor: barColors,
+    borderColor: barborder,
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  responsive: false,
+                  scales: {
+                      y: {
+                          beginAtZero: true,
+                      }
+                  },
+                  legend: {display: false},
+                  title: {
+                    display: true,
+                    text: "ECE Publications over the Years"
+                  }
+              }
+          });
+          
+          
+          //piechart    
+          var piechart=new Chart("pieChart", {
+                type: "pie",
+                data: {
+                  labels: pie_x,
+                  datasets: [{
+                    backgroundColor: barColors,
+                    // borderColor : rgb(105,105,105),
+                    data: pie_y
+                  }]
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  title: {
+                    fontSize: 16,
+                    display: true,
+                    text: "ECE Publications count under each Category"
+                  }
+                }
+              });
+              // doughnut
+              
+
+//horiz bar chart
+              var horizbarchart=new Chart("horizBarChart", {
+                type: "horizontalBar",
+                
+                data: {
+                  labels: horiz_x,
+                  datasets: [{
+                    fill: true,
+                   backgroundColor:barColors,
+                   hoverBackgroundColor: barborder,
+                   borderColor: barborder,
+                    data: horiz_y
+                  }]
+                },
+                options: {
+                  elements: {
+      bar: {
+        borderWidth: 2,
+      }
+    },
+   
+                  responsive: true,
+                  legend: {display: false},
+                  maintainAspectRatio: false,
+                  title: {
+                    fontSize: 16,
+                    display: true,
+                    text: "ECE Publications Released under each Category"
+                  }
+                }
+              });
+      
+</script>
+
+
+
+
+
+
+</body>
+</html>

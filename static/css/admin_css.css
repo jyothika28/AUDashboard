@@ -1,0 +1,254 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Roboto";
+    list-style:none;
+  
+   
+}
+
+body{ 
+    overflow-x : auto; 
+} 
+.sidebar{
+  position:fixed;
+  left: 0px;
+  width:250px;
+  height: 100%;
+  margin-top: 0.15%;
+  /* left: -250px; */
+  background: #fffefe;
+  transition: left 0.4s ease;
+  box-shadow:rgba(99, 99, 99, 0.2) 0px 0px 14px 0px;
+
+}
+.sidebar .text{
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 65px;
+  text-align: center;
+  background: #948e8e;
+  letter-spacing: 1px;
+}
+div ul{
+background: rgba(235, 230, 230, 0.3);
+height: 100%;
+width: 100%;
+list-style: none;
+}
+div ul li{
+line-height: 58.5px;
+border-top: 1px solid rgba(196, 190, 190, 0.001);
+}
+div ul li:last-child{
+border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+div ul li a{
+position: relative;
+color: rgb(0, 0, 0);
+text-decoration: none;
+font-size: 18px;
+padding-left: 40px;
+font-weight: 500;
+display: block;
+width: 100%;
+border-left: 3px solid transparent;
+}
+div ul li.active a{
+color: rgb(255, 255, 255);
+background: #1e1e1e;
+border-left-color: rgb(255, 255, 255);
+}
+div ul li a:hover{
+background: #2c2c2c;
+color: rgb(255, 255, 255);
+}
+div ul ul{
+position: static;
+display: none;
+}
+div ul .feat-show.show{
+display: block;
+}
+
+.feat-show.show{
+  background: rgb(66, 63, 63);
+ color: #fff;
+}
+
+div ul ul li{
+line-height: 42px;
+border-top: none;
+}
+div ul ul li a{
+font-size: 17px;
+color: #e6e6e6;
+padding-left: 80px;
+font-weight: bold;
+}
+
+/*it_cse colors*/
+div ul li.active ul li a{
+color: #dbd2d2;
+background: rgb(66, 63, 63);
+border-left-color: transparent;
+}
+div ul ul li a:hover{
+color: rgb(255, 255, 255)!important;
+background: #5a5858!important;
+}
+
+div ul li a nav{
+position: absolute;
+top: 50%;
+right: 20px;
+transform: translateY(-50%);
+font-size: 22px;
+transition: transform 0.4s;
+}
+
+div ul li a nav.rotate{
+transform: translateY(-50%) rotate(-180deg);
+}
+
+  
+/* text styling*/
+span.i {
+/* font-family: Arial, Helvetica, sans-serif; */
+font-weight: bold;
+font-size: 90%;
+}
+
+
+.logo {
+    width:100%;
+    height:60px;
+    top:10px;
+    right: 5%;;
+    background-color:#fff;
+    z-index: 4px;
+
+}
+
+.righty{
+    float: right;
+    margin:1%;
+    padding:5px;
+    margin-right: 3%;
+}
+.right_buttons{
+    padding: 10px 20px;
+    font-weight:bold;
+    color:black;
+    background-color: white;
+    border-radius: 8px;
+    border-color: black;
+}
+/*styling of logo*/
+#img{
+    width:180px;
+    height:60px;
+   padding:15px;
+   
+   
+}
+@media screen and (width:1920px){
+    .sidebar{
+      position:fixed;
+      left: 0px;
+      width:330px;
+      height: 100%;
+      margin-top: 0.15%;
+      /* left: -250px; */
+      background: #fffefe;
+      transition: left 0.4s ease;
+      box-shadow:rgba(99, 99, 99, 0.2) 0px 0px 14px 0px;
+    
+    }
+    .sidebar .text{
+      color: rgb(0, 0, 0);
+      font-size: 55px;
+      font-weight: 600;
+      line-height: 65px;
+      text-align: center;
+      background: #948e8e;
+      letter-spacing: 1px;
+    }
+    div ul{
+    background: rgba(235, 230, 230, 0.3);
+    height: 100%;
+    width: 100%;
+    list-style: none;
+    }
+    div ul li{
+      font-size: 30px;
+    line-height: 80.5px;
+    border-top: 1px solid rgba(196, 190, 190, 0.001);
+    }
+    div ul li:last-child{
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    div ul li a{
+    position: relative;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 26px;
+    padding-left: 40px;
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    border-left: 3px solid transparent;
+    }
+    div ul li.active a{
+    color: rgb(255, 255, 255);
+    background: #1e1e1e;
+    border-left-color: rgb(255, 255, 255);
+    }
+    div ul li a:hover{
+    background: #2c2c2c;
+    color: rgb(255, 255, 255);
+    }
+    div ul ul{
+    position: static;
+    display: none;
+    }
+    div ul .feat-show.show{
+    display: block;
+    }
+    
+    .feat-show.show{
+      background: rgb(66, 63, 63);
+     color: #fff;
+    }
+    
+    div ul ul li{
+    line-height: 52px;
+    border-top: none;
+    }
+    div ul ul li a{
+    font-size: 17px;
+    color: #e6e6e6;
+    padding-left: 80px;
+    font-weight: bold;
+    }
+    
+    /*it_cse colors*/
+    div ul li.active ul li a{
+    color: #dbd2d2;
+    background: rgb(66, 63, 63);
+    border-left-color: transparent;
+    }
+    div ul ul li a:hover{
+    color: rgb(255, 255, 255)!important;
+    background: #5a5858!important;
+    }
+    .d{
+      font-family:"Roboto";
+       background-color: #dacfcfb0;
+       font-size:26px;
+       font-weight: bold;
+       /* padding-left: 20px; */
+    }
+    }
